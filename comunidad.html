@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidad & Ecosistema · Diseño Gráfico UNICESMAG</title>
+  <meta name="description" content="Ecosistema vivo, eventos académicos, festivales de diseño, semilleros de investigación y red de egresados de Diseño Gráfico de la Universidad CESMAG.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="comunidad">
+
+  <!-- ══════════════ BARRA DE PROGRESO + NAVEGACIÓN GLOBAL ══════════════ -->
+  <div class="progress-bar" aria-hidden="true"><span id="progressFill"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="brand" aria-label="Diseño UNICESMAG — inicio">
+        <img src="assets/img/logo.svg" alt="Diseño UNICESMAG" class="brand__logo" width="160" height="38">
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="index.html" class="nav-link">El programa</a>
+        <a href="proyectos.html" class="nav-link">Proyectos</a>
+        <a href="plan-de-estudios.html" class="nav-link">Plan de estudios</a>
+        <a href="comunidad.html" class="nav-link is-active-page">Comunidad</a>
+        <a href="admisiones.html" class="nav-link">Admisiones</a>
+        <a href="admisiones.html" class="btn btn--primary btn--sm">Quiero ser diseñador</a>
+      </nav>
+
+      <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- ══════════════ CABECERA DE COMUNIDAD ══════════════ -->
+  <section class="page-header section--dark">
+    <div class="container">
+      <p class="kicker">Vida Universitaria &amp; Creación</p>
+      <h1 class="page-header__title">Un ecosistema que no duerme</h1>
+      <p class="page-header__sub">Festivales de diseño, muestras de taller abiertas a la ciudad, semilleros de investigación-creación y una red de egresados que transforma la cultura visual y el sector productivo.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ ECOSISTEMA VIVO ══════════════ -->
+  <section class="section section--light">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Eventos y Espacios</p>
+        <h2>Plataformas donde el diseño cobra vida</h2>
+      </header>
+
+      <div class="eco-grid" id="ecoGrid">
+        <!-- Renderizado dinámicamente desde js/data.js → ECOSISTEMA -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ RED DE EGRESADOS (ALUMNI) ══════════════ -->
+  <section class="section section--morado" id="alumni-section">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker" style="color: var(--amarillo);">Alumni &amp; Territorio</p>
+        <h2 style="color: var(--white);">¿Dónde crean hoy nuestros egresados?</h2>
+        <p class="section__sub" style="color: rgba(255, 255, 255, 0.9);">Diseñadores gráficos del CESMAG liderando agencias, estudios de marca, productoras multimedia, laboratorios de ecodiseño y proyectos comunitarios en Colombia y el exterior.</p>
+      </header>
+
+      <div class="alumni">
+        <article class="alumCard alumCard--featured reveal">
+          <div class="alumCard__badge">Branding &amp; Estrategia</div>
+          <h3>Agencias y Estudios Creativos</h3>
+          <p class="alumCard__role">Dirección de arte · Identidad visual · Packaging</p>
+          <p class="alumCard__desc">Nuestros graduados fundan y lideran estudios de diseño, creando sistemas de identidad para marcas regionales y nacionales.</p>
+        </article>
+
+        <article class="alumCard alumCard--featured reveal">
+          <div class="alumCard__badge" style="background:rgba(91,192,245,.2);color:#5bc0f5;">Editorial &amp; Tipografía</div>
+          <h3>Sector Editorial &amp; Cultural</h3>
+          <p class="alumCard__role">Diseño editorial · Museografía · Ilustración</p>
+          <p class="alumCard__desc">Publicaciones de autor, gestión cultural en museos, identidades patrimoniales y proyectos premiados en convocatorias públicas.</p>
+        </article>
+
+        <article class="alumCard alumCard--featured reveal">
+          <div class="alumCard__badge" style="background:rgba(142,110,232,.2);color:#ffc433;">Digital &amp; 3D</div>
+          <h3>Industrias Digitales &amp; UI/UX</h3>
+          <p class="alumCard__role">Motion design · Videojuegos · Interfaces</p>
+          <p class="alumCard__desc">Modelado 3D, desarrollo de interfaces interactivas y animación audiovisual en empresas de tecnología y entretenimiento.</p>
+        </article>
+      </div>
+
+      <div class="alumni-callout reveal">
+        <h3>¿Eres egresado de Diseño Gráfico UNICESMAG?</h3>
+        <p>Mantén tu perfil activo en nuestra red, comparte tus casos de estudio y participa como mentor o conferencista invitado.</p>
+        <a href="admisiones.html" class="btn btn--primary btn--sm">Actualizar datos de egresado</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER GLOBAL ══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo-completo.svg" alt="Diseño Gráfico UNICESMAG" class="footer__logo" width="180" height="52" loading="lazy">
+        <p>Programa de Diseño Gráfico<br>Facultad de Arquitectura y Bellas Artes<br>Universidad CESMAG · San Juan de Pasto, Colombia</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram del programa">IG</a>
+          <a href="#" aria-label="TikTok del programa">TT</a>
+          <a href="#" aria-label="Facebook del programa">FB</a>
+          <a href="#" aria-label="YouTube">YT</a>
+          <a href="#" aria-label="Threads del programa">TH</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <h4>Contacto &amp; Sede</h4>
+        <a href="mailto:disenografico@unicesmag.edu.co">disenografico@unicesmag.edu.co</a>
+        <a href="tel:+576027244434">(602) 724 4434 Ext. 3101</a>
+        <a href="https://wa.me/573127749019" target="_blank" rel="noopener">WhatsApp: +57 312 774 9019</a>
+        <p style="font-size: .84rem; color: rgba(255,255,255,0.7); margin-top: 6px; line-height: 1.4;">Campus Santiago · Calle 12 No. 22F–16, Pasto</p>
+      </div>
+      <div class="footer__links">
+        <h4>Oficial</h4>
+        <a href="https://www.unicesmag.edu.co/pregrado/diseno-grafico/" target="_blank" rel="noopener">Ficha oficial del programa</a>
+        <a href="https://www.unicesmag.edu.co/recursos/uploads/2025/07/Diseno-UNICESMAG-2025.pdf" target="_blank" rel="noopener">Folleto Oficial (PDF)</a>
+        <a href="https://www.unicesmag.edu.co" target="_blank" rel="noopener">Portal institucional CESMAG</a>
+        <p class="footer__legal">SNIES 19062 · Registro Calificado Res. 21088 de 2023.</p>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>© <span id="year"></span> Programa de Diseño Gráfico · Universidad CESMAG · Diseñar desde el Sur</p>
+    </div>
+  </footer>
+
+  <!-- Botones de Acción Flotantes (CESMAG Institucional + WhatsApp) -->
+  <aside class="floating-actions" aria-label="Acciones rápidas">
+    <a href="https://www.unicesmag.edu.co/pregrado/diseno-grafico/" class="float-btn float-btn--cesmag" target="_blank" rel="noopener" aria-label="Visitar portal oficial UNICESMAG" title="Portal Institucional UNICESMAG">
+      <img src="assets/img/cesmag.svg" alt="UNICESMAG" width="58" height="58">
+    </a>
+    <a href="#" id="waFloat" class="float-btn float-btn--wa" aria-label="Chatear por WhatsApp con la secretaría del programa" title="Chatear por WhatsApp con admisiones" target="_blank" rel="noopener">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.78 14.07c-.24.68-1.4 1.29-1.92 1.34-.51.05-1.17.07-3.79-.99-2.62-1.06-4.3-3.73-4.43-3.9-.13-.17-1.06-1.41-1.06-2.69s.67-1.91.91-2.17c.24-.26.52-.33.69-.33.17 0 .34 0 .49.01.16.01.37-.06.58.44.22.52.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.28.34-.4.46-.13.13-.27.27-.12.53.15.26.68 1.12 1.45 1.81.99.88 1.83 1.15 2.09 1.28.26.13.41.11.56-.06.15-.17.65-.76.82-1.02.17-.26.35-.22.58-.13.24.09 1.51.71 1.77.84.26.13.43.19.49.3.06.11.06.66-.18 1.34z"/></svg>
+    </a>
+  </aside>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

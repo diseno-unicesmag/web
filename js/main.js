@@ -1,0 +1,705 @@
+/* ═══════════════════════════════════════════════════════════════
+   Interacción Global · Portafolio Diseño Gráfico UNICESMAG
+   Vanilla JS multi-página sin dependencias externas.
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  const $  = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+
+  /* ───────── Año del footer ───────── */
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ───────── WhatsApp Flotante Directo ───────── */
+  const WA_DEFAULT_MSG = "Hola, quiero conocer más sobre el programa de Diseño Gráfico de la Universidad CESMAG.";
+  if (CONFIG.whatsapp) {
+    const url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(WA_DEFAULT_MSG);
+    const waFloat = $("#waFloat");
+    if (waFloat) waFloat.href = url;
+  }
+
+  // Redes sociales del footer
+  const socialMap = [
+    ["instagram", "IG"],
+    ["tiktok", "TT"],
+    ["facebook", "FB"],
+    ["youtube", "YT"],
+    ["threads", "TH"],
+  ];
+  $$(".footer__social a").forEach((el) => {
+    const key = socialMap.find(([, label]) => el.textContent.trim() === label);
+    if (key && CONFIG.social && CONFIG.social[key[0]]) {
+      el.href = CONFIG.social[key[0]];
+      el.target = "_blank";
+      el.rel = "noopener";
+    }
+  });
+
+  /* ───────── Ficha oficial del programa ───────── */
+  const fichaGrid = $("#fichaGrid");
+  if (fichaGrid && Array.isArray(FICHA)) {
+    fichaGrid.innerHTML = FICHA.map(
+      (item) => "<div><dt>" + item.k + "</dt><dd>" + item.v + "</dd></div>"
+    ).join("");
+  }
+
+  /* ───────── Datos de contacto oficiales ───────── */
+  const contactData = $("#contactData");
+  if (contactData && CONFIG.contacto) {
+    const dirNombre = (CONFIG.directora && CONFIG.directora.nombre) || CONFIG.contacto.directora || "Karen Eugenia Ocaña Figueroa";
+    const mapLink = (CONFIG.ubicacion && CONFIG.ubicacion.mapUrl) || "https://maps.app.goo.gl/EoxVH21NMHYLb9up7";
+    contactData.innerHTML =
+      '<p><strong>WhatsApp Atención:</strong> <a href="https://wa.me/' + CONFIG.whatsapp + '" target="_blank" rel="noopener">' + CONFIG.contacto.whatsappDisplay + '</a> (' + (CONFIG.contacto.whatsappLabel || "Secretaría") + ')</p>' +
+      '<p><strong>Teléfono Directo:</strong> ' + CONFIG.contacto.telefono + '</p>' +
+      '<p><strong>Correo Oficial:</strong> <a href="mailto:' + CONFIG.contacto.email + '">' + CONFIG.contacto.email + '</a></p>' +
+      '<p><strong>Campus Santiago:</strong> ' + CONFIG.contacto.campus + ' · <a href="' + mapLink + '" target="_blank" rel="noopener">Ver en Google Maps ↗</a></p>' +
+      '<p><strong>Dirección de Programa:</strong> ' + dirNombre + '</p>';
+  }
+
+  /* ───────── Navegación móvil ───────── */
+  const burger = $("#navBurger");
+  const links  = $("#navLinks");
+  if (burger && links) {
+    burger.addEventListener("click", () => {
+      const open = links.classList.toggle("is-open");
+      burger.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+    });
+    $$("#navLinks a").forEach((a) =>
+      a.addEventListener("click", () => {
+        links.classList.remove("is-open");
+        burger.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+      })
+    );
+  }
+
+  /* ───────── Barra de progreso de lectura ───────── */
+  const fill = $("#progressFill");
+  const onScroll = () => {
+    if (!fill) return;
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    fill.style.width = Math.min(Math.max(pct, 0), 100) + "%";
+  };
+  document.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ───────── Aparición al hacer scroll (IntersectionObserver) ───────── */
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  /* ───────── Contadores de cifras ───────── */
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+  const ioCount = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        ioCount.unobserve(el);
+        if (el.dataset.static) {
+          el.textContent = el.dataset.static;
+          return;
+        }
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || "";
+        const dur = 1300;
+        const t0 = performance.now();
+        const tick = (now) => {
+          const p = Math.min((now - t0) / dur, 1);
+          el.textContent = Math.round(easeOut(p) * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    },
+    { threshold: 0.4 }
+  );
+  $$(".stat__num").forEach((el) => ioCount.observe(el));
+
+  /* ───────── Gradientes & Glifos para Proyectos ───────── */
+  const CAT_GRADIENTS = {
+    branding:  "linear-gradient(135deg, #ff7054 0%, #9e2a48 100%)",
+    editorial: "linear-gradient(135deg, #5bc0f5 0%, #3b227c 100%)",
+    multimedia:"linear-gradient(135deg, #ffc433 0%, #a86200 100%)",
+    social:    "linear-gradient(135deg, #6d4ac4 0%, #261142 100%)",
+  };
+  const CAT_GLYPHS = { branding: "B&", editorial: "Aa", multimedia: "3D", social: "+S" };
+
+  /* ═══════════════════════════════════════════════════════════════
+     CINTA CONTINUA DE PROYECTOS (EN LANDING `index.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const tapeTrack = $("#tapeTrack");
+  if (tapeTrack && Array.isArray(PROYECTOS)) {
+    tapeTrack.innerHTML = PROYECTOS.map((p) => {
+      const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
+      const bg = CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)";
+      const glyph = CAT_GLYPHS[p.categoria] || "DG";
+      return (
+        '<div class="tape-card" data-id="' + p.id + '" role="button" tabindex="0" aria-label="Ver proyecto ' + p.titulo + '">' +
+          '<div class="tape-card__cover" style="background:' + bg + ';">' +
+            '<span class="tape-card__cat" style="color:' + cat.color + ';">' + cat.label + '</span>' +
+            '<span class="tape-card__glyph" aria-hidden="true">' + glyph + '</span>' +
+          '</div>' +
+          '<div class="tape-card__body">' +
+            '<h4>' + p.titulo + '</h4>' +
+            '<p>' + p.semestre + ' · ' + p.herramientas + '</p>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+
+    $$(".tape-card", tapeTrack).forEach((card) => {
+      card.addEventListener("click", () => {
+        window.location.href = "proyectos.html";
+      });
+      card.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          window.location.href = "proyectos.html";
+        }
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     CARRUSEL DE NOTICIAS (EN LANDING `index.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const newsTrack = $("#newsTrack");
+  if (newsTrack && Array.isArray(NOTICIAS)) {
+    /* Glifos decorativos por tag */
+    const NEWS_GLYPHS = {
+      "Convocatoria": "!",
+      "Muestra":      "◇",
+      "Investigación": "◎",
+      "Festival":     "★",
+      "Egresados":    "©",
+    };
+
+    function buildNewsCard(n) {
+      const glyph = NEWS_GLYPHS[n.tag] || "◆";
+      const coverContent = n.img
+        ? '<img src="' + n.img + '" alt="' + n.titulo + '" loading="lazy">'
+        : '<span class="news-card__glyph" aria-hidden="true">' + glyph + '</span>';
+      return (
+        '<a class="news-card" href="' + n.enlace + '" aria-label="' + n.titulo + '">' +
+          '<div class="news-card__cover" style="background:' + n.colorBg + ';">' +
+            coverContent +
+          '</div>' +
+          '<div class="news-card__body">' +
+            '<span class="news-card__tag" style="background:' + n.tagBg + ';color:' + n.tagColor + ';">' + n.tag + '</span>' +
+            '<p class="news-card__fecha">' + n.fecha + '</p>' +
+            '<h3 class="news-card__title">' + n.titulo + '</h3>' +
+            '<p class="news-card__desc">' + n.desc + '</p>' +
+            '<span class="news-card__cta">Leer más →</span>' +
+          '</div>' +
+        '</a>'
+      );
+    }
+
+    /* Duplicar las tarjetas para que el loop CSS sea infinito */
+    const cardsHTML = NOTICIAS.map(buildNewsCard).join("");
+    newsTrack.innerHTML = cardsHTML + cardsHTML; // duplicado para loop sin salto
+
+    /* Pausa en hover ya definida en CSS. Drag para mover manualmente: */
+    let isDragging = false, startX = 0, dragOffset = 0, currentOffset = 0;
+
+    newsTrack.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startX = e.pageX;
+      newsTrack.style.animationPlayState = "paused";
+      e.preventDefault();
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      dragOffset = e.pageX - startX;
+      newsTrack.style.transform = "translateX(calc(" + currentOffset + "px + " + dragOffset + "px))";
+    });
+    document.addEventListener("mouseup", () => {
+      if (isDragging) {
+        isDragging = false;
+        currentOffset += dragOffset;
+        dragOffset = 0;
+        newsTrack.style.animationPlayState = "";
+        newsTrack.style.transform = "";
+        currentOffset = 0;
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     HERRAMIENTAS REALES DEL OFICIO (EN LANDING `index.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const appsSectionsGrid = $("#appsSectionsGrid");
+  if (appsSectionsGrid && Array.isArray(HERRAMIENTAS_APPS)) {
+    const APP_ICONS = {
+      "Adobe Illustrator": "Ai",
+      "Adobe Photoshop": "Ps",
+      "Adobe InDesign": "Id",
+      "Adobe After Effects": "Ae",
+      "Adobe Premiere Pro": "Pr",
+      "Adobe Lightroom": "Lr",
+      "ZBrush": "Zb",
+      "KeyShot": "Ks",
+      "Processing": "Pr",
+      "Unity": "Un",
+      "Arduino": "Ar",
+      "Spatial": "Sp",
+      "Figma": "Fg",
+      "Taller de Serigrafía y Grabado": "▨",
+      "Set de Fotografía e Iluminación": "◉",
+      "Taller de Encuadernación y Empaques": "◧",
+      "Taller de Técnicas Manuales y Aerografía": "✎",
+    };
+
+    const GROUP_CLASSES = {
+      "Suite Creativa Principal": "apps-group--salmon",
+      "3D, Interacción & Código Creativo": "apps-group--amarillo",
+      "Talleres y Oficio Físico": "apps-group--azul",
+    };
+
+    appsSectionsGrid.innerHTML = HERRAMIENTAS_APPS.map((group) => {
+      const cls = GROUP_CLASSES[group.categoria] || "apps-group--salmon";
+      const itemsHtml = group.apps.map((app) => {
+        const ic = APP_ICONS[app.nombre] || "◆";
+        return (
+          '<div class="app-chip">' +
+            '<div class="app-chip__icon">' + ic + '</div>' +
+            '<div class="app-chip__text">' +
+              '<strong>' + app.nombre + '</strong>' +
+              '<span>' + app.tag + '</span>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join("");
+
+      return (
+        '<div class="apps-group ' + cls + ' reveal">' +
+          '<div class="apps-group__head">' +
+            '<h3>' + group.categoria + '</h3>' +
+          '</div>' +
+          '<div class="apps-chips-grid">' + itemsHtml + '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     CATÁLOGO COMPLETO DE PROYECTOS (EN `proyectos.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const grid = $("#projectsGrid");
+  const modal = $("#projectModal");
+  let lastFocus = null;
+
+  function projectCard(p) {
+    const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
+    const card = document.createElement("article");
+    card.className = "project reveal";
+    card.dataset.cat = p.categoria;
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", "Ver caso de estudio: " + p.titulo);
+
+    const cover = p.img
+      ? '<img src="' + p.img + '" alt="Proyecto: ' + p.titulo + '">'
+      : '<span class="project__glyph" aria-hidden="true">' + (CAT_GLYPHS[p.categoria] || "DG") + "</span>";
+
+    card.innerHTML =
+      '<div class="project__cover" style="background:' + (CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)") + '">' +
+        '<span class="project__cat" style="color:' + cat.color + '">' + cat.label + "</span>" +
+        (p.demo ? '<span class="project__demo">DEMO</span>' : "") +
+        cover +
+      "</div>" +
+      '<div class="project__body">' +
+        "<h3>" + p.titulo + "</h3>" +
+        "<p>" + p.estudiante + " · " + p.semestre + "</p>" +
+      "</div>";
+
+    card.addEventListener("click", () => openModal(p));
+    card.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        openModal(p);
+      }
+    });
+    return card;
+  }
+
+  if (grid && Array.isArray(PROYECTOS)) {
+    PROYECTOS.forEach((p) => {
+      const card = projectCard(p);
+      grid.appendChild(card);
+    });
+  }
+
+  $$(".filter").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      $$(".filter").forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-selected", String(b === btn));
+      });
+      const f = btn.dataset.filter;
+      $$(".project", grid).forEach((card) => {
+        const show = f === "todos" || card.dataset.cat === f;
+        card.classList.toggle("is-hidden", !show);
+      });
+    });
+  });
+
+  function openModal(p) {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
+    const coverEl = $("#modalCover");
+    coverEl.style.background = CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)";
+    coverEl.innerHTML = p.img
+      ? '<img src="' + p.img + '" alt="' + p.titulo + '" style="width:100%;height:100%;object-fit:cover;">'
+      : '<span class="project__glyph" aria-hidden="true">' + (CAT_GLYPHS[p.categoria] || "DG") + "</span>";
+
+    $("#modalCat").textContent = cat.label;
+    $("#modalCat").style.color = cat.color;
+    $("#modalTitle").textContent = p.titulo;
+    $("#modalDesc").textContent = p.desc;
+    $("#modalMeta").innerHTML = [
+      ["Estudiante", p.estudiante],
+      ["Semestre", p.semestre],
+      ["Asignatura", p.asignatura],
+      ["Docente guía", p.docente],
+      ["Herramientas", p.herramientas],
+      ["Estado", p.demo ? "Demo — pendiente de curaduría" : "Proyecto real"],
+    ]
+      .map(([k, v]) => "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>")
+      .join("");
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    const closeBtn = $(".modal__close", modal);
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+
+  if (modal) {
+    $$("[data-close]", modal).forEach((el) => el.addEventListener("click", closeModal));
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && !modal.hidden) closeModal();
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     PLAN DE ESTUDIOS INTERACTIVO (EN `plan-de-estudios.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const fasesNav         = $("#fasesNav");
+  const semNav           = $("#semNav");
+  const mallaViewerHead  = $("#mallaViewerHead");
+  const mallaSubjects    = $("#mallaSubjects");
+  const mallaDetail      = $("#mallaDetail");
+
+  let currentSemestreNum = 1;
+  let currentFaseKey     = "descubrir";
+  let currentSubjectIdx  = 0;
+
+  const TIPO_ICONS = {
+    "Eje del Semestre": "◆",
+    "Expresión Plástica": "✎",
+    "Medios Digitales": "⌘",
+    "Teoría & Comunicación": "◉",
+    "Gestión & Proyecto": "▲",
+    "Formación Integral": "★",
+  };
+
+  function initFasesNav() {
+    if (!fasesNav || !FASES) return;
+    const keys = Object.keys(FASES);
+    fasesNav.innerHTML = keys.map((key) => {
+      const f = FASES[key];
+      const isActive = key === currentFaseKey;
+      const activeStyle = isActive
+        ? 'style="background: var(--morado); border-color:' + f.color + '; box-shadow: 0 10px 30px -10px var(--morado-glow);"'
+        : 'style="border-color: transparent;"';
+      const badgeStyle = 'style="color:' + (isActive ? f.color : f.color) + '; font-weight: 700;"';
+      const titleStyle = isActive ? 'style="color: #ffffff;"' : 'style="color: var(--ink);"';
+      const rangeStyle = isActive ? 'style="color: rgba(255,255,255,0.85);"' : 'style="color: var(--ink-soft);"';
+
+      return (
+        '<button class="fase-tab ' + (isActive ? "is-active" : "") + '" data-fase="' + key + '" role="tab" aria-selected="' + isActive + '" ' + activeStyle + '>' +
+          '<span class="fase-tab__badge" ' + badgeStyle + '>' + f.badge + '</span>' +
+          '<strong ' + titleStyle + '>' + f.nombre + '</strong>' +
+          '<span class="fase-tab__rango" ' + rangeStyle + '>' + f.rango + '</span>' +
+        '</button>'
+      );
+    }).join("");
+
+    $$(".fase-tab", fasesNav).forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const fKey = btn.dataset.fase;
+        if (fKey === currentFaseKey) return;
+        currentFaseKey = fKey;
+        currentSemestreNum = FASES[fKey].semestres[0];
+        currentSubjectIdx = 0;
+        updateMallaUI();
+      });
+    });
+  }
+
+  function initSemNav() {
+    if (!semNav || !Array.isArray(MALLA)) return;
+    semNav.innerHTML = MALLA.map((sem) => {
+      const active = sem.semestre === currentSemestreNum;
+      const inActiveFase = FASES[currentFaseKey].semestres.includes(sem.semestre);
+      const semFase = FASES[sem.fase] || FASES.descubrir;
+
+      let pillStyle = "";
+      let numStyle = "";
+      let crStyle = "";
+
+      if (active) {
+        pillStyle = 'style="background: var(--morado); border-color:' + semFase.color + '; box-shadow: 0 6px 20px -6px var(--morado-glow); transform: scale(1.05);"';
+        numStyle = 'style="color:' + semFase.color + '; font-weight: 900;"';
+        crStyle = 'style="color: #ffffff;"';
+      } else if (inActiveFase) {
+        pillStyle = 'style="border-color:' + semFase.color + '; background: rgba(255,255,255,0.95);"';
+        numStyle = 'style="color: var(--ink);"';
+        crStyle = 'style="color: var(--ink-soft);"';
+      } else {
+        pillStyle = 'style="border-color: #e5e0ed; background: var(--white);"';
+        numStyle = 'style="color: var(--ink);"';
+        crStyle = 'style="color: var(--ink-soft);"';
+      }
+
+      return (
+        '<button class="sem-pill ' + (active ? "is-active " : "") + (inActiveFase ? "in-fase " : "") + '" data-sem="' + sem.semestre + '" role="tab" aria-selected="' + active + '" ' + pillStyle + '>' +
+          '<span class="sem-pill__num" ' + numStyle + '>' + sem.semestre + 'º</span>' +
+          '<span class="sem-pill__cr" ' + crStyle + '>' + sem.creditos + ' créditos</span>' +
+        '</button>'
+      );
+    }).join("");
+
+    $$(".sem-pill", semNav).forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const sNum = parseInt(btn.dataset.sem, 10);
+        if (sNum === currentSemestreNum) return;
+        currentSemestreNum = sNum;
+        const foundFase = Object.keys(FASES).find((k) => FASES[k].semestres.includes(sNum));
+        if (foundFase) currentFaseKey = foundFase;
+        currentSubjectIdx = 0;
+        updateMallaUI();
+      });
+    });
+  }
+
+  function renderSemesterView() {
+    if (!mallaViewerHead || !mallaSubjects || !mallaDetail || !Array.isArray(MALLA)) return;
+
+    const semData = MALLA.find((s) => s.semestre === currentSemestreNum) || MALLA[0];
+    const faseData = FASES[semData.fase] || FASES.descubrir;
+
+    mallaViewerHead.innerHTML =
+      '<div class="malla-vh__main">' +
+        '<span class="malla-vh__badge" style="background:' + faseData.color + ';color:#120924;font-weight:700;">' + faseData.badge + ' · ' + faseData.nombre + '</span>' +
+        '<h3>' + semData.ordinal + ' · <span class="malla-vh__eje" style="color:' + faseData.color + ';">' + semData.eje + '</span></h3>' +
+        '<p class="malla-vh__desc">' + semData.descripcionFase + '</p>' +
+      '</div>' +
+      '<div class="malla-vh__stats">' +
+        '<div class="malla-stat-box"><span class="ms-num" style="color:' + faseData.color + ';">' + semData.creditos + '</span><span class="ms-lbl">Créditos</span></div>' +
+        '<div class="malla-stat-box"><span class="ms-num" style="color:' + faseData.color + ';">' + semData.asignaturas.length + '</span><span class="ms-lbl">Materias</span></div>' +
+      '</div>';
+
+    mallaSubjects.innerHTML = semData.asignaturas.map((subj, idx) => {
+      const isSelected = idx === currentSubjectIdx;
+      const credText = subj.c + (subj.c === 1 ? " crédito" : " créditos");
+
+      let itemStyle = "";
+      let titleStyle = "";
+      let credStyle = "";
+      let ejeBadge = "";
+
+      if (isSelected) {
+        itemStyle = 'style="background: var(--morado); border-color:' + faseData.color + '; box-shadow: 0 6px 18px -6px var(--morado-glow); transform: translateX(4px);"';
+        titleStyle = 'style="color: #ffffff;"';
+        credStyle = 'style="color:' + faseData.color + '; font-weight: 800;"';
+        if (subj.isEje) {
+          ejeBadge = '<span class="subj-item__eje-badge" style="background: #ffffff; color: var(--morado); font-weight: 800;">Eje del Semestre</span>';
+        }
+      } else {
+        itemStyle = 'style="background: var(--white); border: 1.5px solid #eae5f0;"';
+        titleStyle = 'style="color: var(--ink);"';
+        credStyle = 'style="color:' + faseData.color + '; font-weight: 700;"';
+        if (subj.isEje) {
+          ejeBadge = '<span class="subj-item__eje-badge" style="background: var(--morado); color: #ffffff; font-weight: 700;">Eje del Semestre</span>';
+        }
+      }
+
+      return (
+        '<button class="subj-item ' + (isSelected ? "is-selected " : "") + (subj.isEje ? "is-eje " : "") + '" data-idx="' + idx + '" role="tab" aria-selected="' + isSelected + '" ' + itemStyle + '>' +
+          '<div class="subj-item__text">' +
+            '<h4 ' + titleStyle + '>' + subj.n + '</h4>' +
+            '<div class="subj-item__meta">' +
+              '<span class="subj-item__cred" ' + credStyle + '>' + credText + '</span>' +
+              ejeBadge +
+            '</div>' +
+          '</div>' +
+        '</button>'
+      );
+    }).join("");
+
+    $$(".subj-item", mallaSubjects).forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentSubjectIdx = parseInt(btn.dataset.idx, 10);
+        renderSemesterView();
+      });
+    });
+
+    renderSubjectDetail(semData);
+  }
+
+  function renderSubjectDetail(semData) {
+    if (!mallaDetail) return;
+    const subj = semData.asignaturas[currentSubjectIdx] || semData.asignaturas[0];
+    const faseData = FASES[semData.fase] || FASES.descubrir;
+    const credText = subj.c + (subj.c === 1 ? " Crédito Académico" : " Créditos Académicos");
+    const ejeTag = subj.isEje
+      ? '<span class="sd-tag sd-tag--eje">Eje del Semestre</span>'
+      : '';
+
+    mallaDetail.innerHTML =
+      '<div class="subj-detail-card">' +
+        '<div class="subj-detail__top">' +
+          ejeTag +
+          '<span class="sd-tag sd-tag--sem" style="background:' + faseData.color + ';color:#120924;font-weight:700;">' + semData.ordinal + '</span>' +
+          '<span class="sd-tag sd-tag--cred" style="background:rgba(109,74,196,0.12);color:var(--morado);font-weight:700;">' + credText + '</span>' +
+        '</div>' +
+        '<h3 class="subj-detail__title">' + subj.n + '</h3>' +
+        '<div class="subj-detail__body">' +
+          '<h5>Propósito y Contenido Formativo</h5>' +
+          '<p>' + subj.d + '</p>' +
+        '</div>' +
+        '<div class="subj-detail__footer">' +
+          '<div class="sd-footer-item">' +
+            '<span class="sd-lbl">Eje del Semestre:</span>' +
+            '<strong class="sd-val">' + semData.eje + '</strong>' +
+          '</div>' +
+          '<div class="sd-footer-item">' +
+            '<span class="sd-lbl">Fase Curricular:</span>' +
+            '<strong class="sd-val" style="color:' + faseData.color + ';">' + faseData.nombre + ' (' + faseData.rango + ')</strong>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function updateMallaUI() {
+    initFasesNav();
+    initSemNav();
+    renderSemesterView();
+  }
+
+  if (mallaViewerHead) {
+    updateMallaUI();
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     COMUNIDAD & ECOSISTEMA (EN `comunidad.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const ecoGrid = $("#ecoGrid");
+  if (ecoGrid && Array.isArray(ECOSISTEMA)) {
+    const LOGO_SCALE = 0.58;
+    ecoGrid.innerHTML = ECOSISTEMA.map((eco) => {
+      let logoHtml = "";
+      if (eco.logo && eco.viewWidth && eco.viewHeight) {
+        const lw = Math.round(eco.viewWidth * LOGO_SCALE);
+        const lh = Math.round(eco.viewHeight * LOGO_SCALE);
+        logoHtml = '<div class="ecoCard__logo-wrap"><img src="' + eco.logo + '" alt="' + eco.titulo + '" class="ecoCard__logo" width="' + lw + '" height="' + lh + '" style="width:' + lw + 'px;height:' + lh + 'px;" loading="lazy"></div>';
+      }
+      return (
+        '<article class="ecoCard reveal">' +
+          '<div class="ecoCard__top">' +
+            '<span class="ecoCard__tag" style="background:' + (eco.tagBg || "#6d4ac4") + '; color:' + (eco.tagText || "#ffffff") + ';">' + eco.tag + '</span>' +
+          '</div>' +
+          logoHtml +
+          '<h3>' + eco.titulo + '</h3>' +
+          '<p>' + eco.desc + '</p>' +
+          '<div class="ecoCard__dest">' + eco.destacado + '</div>' +
+        '</article>'
+      );
+    }).join("");
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     PREGUNTAS FRECUENTES (EN `admisiones.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const faqList = $("#faqList");
+  if (faqList && Array.isArray(FAQS)) {
+    FAQS.forEach((f) => {
+      const item = document.createElement("div");
+      item.className = "faq-item";
+      item.innerHTML =
+        "<button aria-expanded='false'><span>" + f.q + "</span>" +
+        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' +
+        "</button><div class='faq-a'><p>" + f.a + "</p></div>";
+      const btn  = $("button", item);
+      const body = $(".faq-a", item);
+      btn.addEventListener("click", () => {
+        const open = item.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(open));
+        body.style.maxHeight = open ? body.scrollHeight + "px" : "0px";
+      });
+      faqList.appendChild(item);
+    });
+  }
+
+  /* ───────── Observar todos los elementos .reveal ───────── */
+  $$(".reveal").forEach((el) => io.observe(el));
+
+  /* ───────── Formulario → WhatsApp Dinámico ───────── */
+  const contactForm = $("#contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const data = new FormData(ev.target);
+      const nombre  = (data.get("nombre") || "").trim();
+      const colegio = (data.get("colegio") || "").trim();
+      const ciudad  = (data.get("ciudad") || "").trim();
+      const interes = (data.get("interes") || "").trim();
+
+      let origen = "";
+      if (colegio && ciudad) {
+        origen = " del colegio " + colegio + " en " + ciudad;
+      } else if (colegio) {
+        origen = " del colegio " + colegio;
+      } else if (ciudad) {
+        origen = " de " + ciudad;
+      }
+
+      let interesTexto = "";
+      if (interes) {
+        interesTexto = " con énfasis en el área de " + interes;
+      }
+
+      const msg = "Hola, soy " + (nombre || "aspirante") + origen + ". Me interesa el programa de Diseño Gráfico" + interesTexto + ".";
+
+      if (CONFIG.whatsapp) {
+        window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg), "_blank");
+      } else {
+        alert(
+          "Listo, " + nombre + ":\n\n“" + msg + "”\n\n" +
+          "(Vista previa del mensaje. Número configurado en js/data.js)"
+        );
+      }
+      ev.target.reset();
+    });
+  }
+})();
