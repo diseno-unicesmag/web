@@ -161,12 +161,15 @@
     }).join("");
 
     $$(".tape-card", tapeTrack).forEach((card) => {
+      const pId = card.dataset.id;
+      const projectData = PROYECTOS.find((p) => p.id === pId);
       card.addEventListener("click", () => {
-        window.location.href = "proyectos.html";
+        if (projectData) openProjectModal(projectData);
       });
       card.addEventListener("keydown", (ev) => {
         if (ev.key === "Enter" || ev.key === " ") {
-          window.location.href = "proyectos.html";
+          ev.preventDefault();
+          if (projectData) openProjectModal(projectData);
         }
       });
     });
@@ -192,7 +195,7 @@
         ? '<img src="' + n.img + '" alt="' + n.titulo + '" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'inline-block\';"><span class="news-card__glyph" aria-hidden="true" style="display:none;">' + glyph + '</span>'
         : '<span class="news-card__glyph" aria-hidden="true">' + glyph + '</span>';
       return (
-        '<a class="news-card" href="' + n.enlace + '" aria-label="' + n.titulo + '">' +
+        '<div class="news-card" data-id="' + n.id + '" role="button" tabindex="0" aria-label="Ver noticia ' + n.titulo + '">' +
           '<div class="news-card__cover" style="background:' + n.colorBg + ';">' +
             coverContent +
           '</div>' +
@@ -201,15 +204,29 @@
             '<p class="news-card__fecha">' + n.fecha + '</p>' +
             '<h3 class="news-card__title">' + n.titulo + '</h3>' +
             '<p class="news-card__desc">' + n.desc + '</p>' +
-            '<span class="news-card__cta">Leer más →</span>' +
+            '<span class="news-card__cta">Leer noticia completa →</span>' +
           '</div>' +
-        '</a>'
+        '</div>'
       );
     }
 
     /* Duplicar las tarjetas para que el loop CSS sea infinito */
     const cardsHTML = NOTICIAS.map(buildNewsCard).join("");
     newsTrack.innerHTML = cardsHTML + cardsHTML; // duplicado para loop sin salto
+
+    $$(".news-card", newsTrack).forEach((card) => {
+      const nId = card.dataset.id;
+      const newsData = NOTICIAS.find((n) => n.id === nId);
+      card.addEventListener("click", () => {
+        if (newsData) openNewsModal(newsData);
+      });
+      card.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          if (newsData) openNewsModal(newsData);
+        }
+      });
+    });
 
     /* Pausa en hover ya definida en CSS. Drag para mover manualmente: */
     let isDragging = false, startX = 0, dragOffset = 0, currentOffset = 0;
@@ -218,7 +235,6 @@
       isDragging = true;
       startX = e.pageX;
       newsTrack.style.animationPlayState = "paused";
-      e.preventDefault();
     });
     document.addEventListener("mousemove", (e) => {
       if (!isDragging) return;
@@ -295,11 +311,116 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
-     CATÁLOGO COMPLETO DE PROYECTOS (EN `proyectos.html`)
+     GALERÍA DE PROYECTOS & MODAL DE PROYECTO (GLOBAL)
      ═══════════════════════════════════════════════════════════════ */
   const grid = $("#projectsGrid");
-  const modal = $("#projectModal");
-  let lastFocus = null;
+  const projectModal = $("#projectModal");
+  let lastProjectFocus = null;
+
+  function openProjectModal(p) {
+    if (!projectModal) return;
+    lastProjectFocus = document.activeElement;
+    const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
+    const coverEl = $("#modalCover");
+    if (coverEl) {
+      coverEl.style.background = CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)";
+      coverEl.innerHTML = p.img
+        ? '<img src="' + p.img + '" alt="' + p.titulo + '" style="width:100%;height:100%;object-fit:cover;">'
+        : '<span class="project__glyph" aria-hidden="true">' + (CAT_GLYPHS[p.categoria] || "DG") + "</span>";
+    }
+
+    const catEl = $("#modalCat");
+    if (catEl) {
+      catEl.textContent = cat.label;
+      catEl.style.color = cat.color;
+    }
+    const titleEl = $("#modalTitle");
+    if (titleEl) titleEl.textContent = p.titulo;
+    const descEl = $("#modalDesc");
+    if (descEl) descEl.textContent = p.desc;
+    const metaEl = $("#modalMeta");
+    if (metaEl) {
+      metaEl.innerHTML = [
+        ["Estudiante", p.estudiante],
+        ["Semestre", p.semestre],
+        ["Asignatura", p.asignatura],
+        ["Docente guía", p.docente],
+        ["Herramientas", p.herramientas],
+        ["Estado", p.demo ? "Demo — pendiente de curaduría" : "Proyecto real"],
+      ]
+        .map(([k, v]) => "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>")
+        .join("");
+    }
+    projectModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    const closeBtn = $(".modal__close", projectModal);
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeProjectModal() {
+    if (!projectModal) return;
+    projectModal.hidden = true;
+    document.body.style.overflow = "";
+    if (lastProjectFocus) lastProjectFocus.focus();
+  }
+
+  if (projectModal) {
+    $$("[data-close]", projectModal).forEach((el) => el.addEventListener("click", closeProjectModal));
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && !projectModal.hidden) closeProjectModal();
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     MODAL DE NOTICIA (GLOBAL)
+     ═══════════════════════════════════════════════════════════════ */
+  const newsModal = $("#newsModal");
+  let lastNewsFocus = null;
+
+  function openNewsModal(n) {
+    if (!newsModal) return;
+    lastNewsFocus = document.activeElement;
+    const coverEl = $("#newsModalCover");
+    if (coverEl) {
+      coverEl.style.background = n.colorBg || "linear-gradient(135deg, #1e1435 0%, #0d0718 100%)";
+      coverEl.innerHTML = n.img
+        ? '<img src="' + n.img + '" alt="' + n.titulo + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\';">'
+        : '<div class="newsCard__placeholder-cover"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>';
+    }
+    const tagEl = $("#newsModalTag");
+    if (tagEl) {
+      tagEl.textContent = n.tag;
+      tagEl.style.background = n.tagBg || "rgba(109,74,196,0.18)";
+      tagEl.style.color = n.tagColor || "var(--morado)";
+    }
+    const dateEl = $("#newsModalDate");
+    if (dateEl) {
+      dateEl.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + n.fecha;
+    }
+    const titleEl = $("#newsModalTitle");
+    if (titleEl) titleEl.textContent = n.titulo;
+    const descEl = $("#newsModalDesc");
+    if (descEl) descEl.textContent = n.cuerpo || n.desc;
+
+    newsModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    const closeBtn = $(".modal__close", newsModal);
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeNewsModal() {
+    if (!newsModal) return;
+    newsModal.hidden = true;
+    document.body.style.overflow = "";
+    if (lastNewsFocus) lastNewsFocus.focus();
+  }
+
+  if (newsModal) {
+    $$("[data-close]", newsModal).forEach((el) => el.addEventListener("click", closeNewsModal));
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape" && !newsModal.hidden) closeNewsModal();
+    });
+  }
 
   function projectCard(p) {
     const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
@@ -325,11 +446,11 @@
         "<p>" + p.estudiante + " · " + p.semestre + "</p>" +
       "</div>";
 
-    card.addEventListener("click", () => openModal(p));
+    card.addEventListener("click", () => openProjectModal(p));
     card.addEventListener("keydown", (ev) => {
       if (ev.key === "Enter" || ev.key === " ") {
         ev.preventDefault();
-        openModal(p);
+        openProjectModal(p);
       }
     });
     return card;
@@ -355,50 +476,6 @@
       });
     });
   });
-
-  function openModal(p) {
-    if (!modal) return;
-    lastFocus = document.activeElement;
-    const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
-    const coverEl = $("#modalCover");
-    coverEl.style.background = CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)";
-    coverEl.innerHTML = p.img
-      ? '<img src="' + p.img + '" alt="' + p.titulo + '" style="width:100%;height:100%;object-fit:cover;">'
-      : '<span class="project__glyph" aria-hidden="true">' + (CAT_GLYPHS[p.categoria] || "DG") + "</span>";
-
-    $("#modalCat").textContent = cat.label;
-    $("#modalCat").style.color = cat.color;
-    $("#modalTitle").textContent = p.titulo;
-    $("#modalDesc").textContent = p.desc;
-    $("#modalMeta").innerHTML = [
-      ["Estudiante", p.estudiante],
-      ["Semestre", p.semestre],
-      ["Asignatura", p.asignatura],
-      ["Docente guía", p.docente],
-      ["Herramientas", p.herramientas],
-      ["Estado", p.demo ? "Demo — pendiente de curaduría" : "Proyecto real"],
-    ]
-      .map(([k, v]) => "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>")
-      .join("");
-    modal.hidden = false;
-    document.body.style.overflow = "hidden";
-    const closeBtn = $(".modal__close", modal);
-    if (closeBtn) closeBtn.focus();
-  }
-
-  function closeModal() {
-    if (!modal) return;
-    modal.hidden = true;
-    document.body.style.overflow = "";
-    if (lastFocus) lastFocus.focus();
-  }
-
-  if (modal) {
-    $$("[data-close]", modal).forEach((el) => el.addEventListener("click", closeModal));
-    document.addEventListener("keydown", (ev) => {
-      if (ev.key === "Escape" && !modal.hidden) closeModal();
-    });
-  }
 
   /* ═══════════════════════════════════════════════════════════════
      PLAN DE ESTUDIOS INTERACTIVO (EN `plan-de-estudios.html`)
@@ -649,7 +726,7 @@
         : '<div class="newsCard__media" style="background:' + (n.colorBg || '#1e1435') + ';"><div class="newsCard__placeholder-cover"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>';
 
       return (
-        '<article class="newsCard reveal">' +
+        '<article class="newsCard reveal" data-id="' + n.id + '" role="button" tabindex="0" aria-label="Ver noticia ' + n.titulo + '">' +
           imgHtml +
           '<div class="newsCard__body">' +
             '<div class="newsCard__meta">' +
@@ -662,6 +739,20 @@
         '</article>'
       );
     }).join("");
+
+    $$(".newsCard", noticiasGrid).forEach((card) => {
+      const nId = card.dataset.id;
+      const newsData = NOTICIAS.find((n) => n.id === nId);
+      card.addEventListener("click", () => {
+        if (newsData) openNewsModal(newsData);
+      });
+      card.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          if (newsData) openNewsModal(newsData);
+        }
+      });
+    });
   }
 
   /* ═══════════════════════════════════════════════════════════════
