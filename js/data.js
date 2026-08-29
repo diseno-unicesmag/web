@@ -408,7 +408,9 @@ const ECOSISTEMA = [
   },
 ];
 
-/* PREGUNTAS FRECUENTES */
+/* ═══════════════════════════════════════════════════════════════
+   PREGUNTAS FRECUENTES
+   ═══════════════════════════════════════════════════════════════ */
 const FAQS = [
   {
     q: "¿Necesito saber dibujar perfectamente para ingresar?",
@@ -433,70 +435,170 @@ const FAQS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   NOTICIAS Y EVENTOS DEL PROGRAMA
-   Actualiza estas entradas cuando haya nueva información oficial.
-   Imágenes: coloca archivos en assets/img/noticias/ y referencia aquí.
+   NOTICIAS Y ACTUALIDAD DEL PROGRAMA (OFICIALES)
    ═══════════════════════════════════════════════════════════════ */
 const NOTICIAS = [
   {
     id: "n01",
-    tag: "Convocatoria",
-    tagColor: "#ffc433",
-    tagBg: "rgba(255,196,51,0.18)",
-    fecha: "Ago 2026",
-    titulo: "Inscripciones abiertas — Semestre 2026-II",
-    desc: "El Programa de Diseño Gráfico abre inscripciones para el segundo semestre. Cupos limitados. Proceso 100% asistido con orientación vocacional personalizada.",
-    enlace: "admisiones.html",
-    img: null,
-    colorBg: "linear-gradient(135deg, #2d1555 0%, #120929 100%)",
+    tag: "Muestra Académica",
+    tagColor: "#ff7054",
+    tagBg: "rgba(255,112,84,0.18)",
+    fecha: "5 de junio, 2026",
+    titulo: "¡Creatividad que deja huella! Así se vivió la Muestra Académica Demente 2026",
+    desc: "Un espacio lleno de color, talento e innovación donde nuestros estudiantes de Diseño Gráfico demostraron cómo sus ideas cobran vida a través del diseño, la moda, el territorio y la comunicación visual.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-demente-2026.jpg",
+    colorBg: "linear-gradient(135deg, #4a150c 0%, #200804 100%)",
   },
   {
     id: "n02",
-    tag: "Muestra",
+    tag: "Interdisciplinar & Territorio",
     tagColor: "#5bc0f5",
     tagBg: "rgba(91,192,245,0.18)",
-    fecha: "Jul 2026",
-    titulo: "DeMente — Muestra de fin de semestre",
-    desc: "Estudiantes del Programa presentaron sus proyectos de taller ante la ciudad. Identidad visual, piezas editoriales y multimedia en una jornada abierta de diseño.",
-    enlace: "proyectos.html",
-    img: null,
+    fecha: "8 de mayo, 2026",
+    titulo: "III Encuentro de Prácticas del Sur: el aula como escenario de transformación territorial",
+    desc: "La Facultad de Educación y el Programa de Diseño Gráfico lideraron este espacio de reflexión pedagógica y creativa, orientando las experiencias de aula hacia la transformación del contexto regional.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-practicas-sur-2026.jpg",
     colorBg: "linear-gradient(135deg, #0d3f5c 0%, #091e2e 100%)",
   },
   {
     id: "n03",
-    tag: "Investigación",
-    tagColor: "#ff7054",
-    tagBg: "rgba(255,112,84,0.18)",
-    fecha: "Jun 2026",
-    titulo: "Semillero D+I Gráfico — Ponencias en Cali",
-    desc: "Integrantes del Semillero de Investigación D+I Gráfico presentaron resultados en el Encuentro Nacional de Semilleros de Investigación en Diseño.",
-    enlace: "comunidad.html",
-    img: null,
-    colorBg: "linear-gradient(135deg, #5a1e12 0%, #280d08 100%)",
+    tag: "Festival Buenamente",
+    tagColor: "#ffc433",
+    tagBg: "rgba(255,196,51,0.22)",
+    fecha: "12 de noviembre, 2025",
+    titulo: "Talento, creatividad e inspiración: así se vivió BUENAMENTE 2025",
+    desc: "El Festival BUENAMENTE 2025 reunió a estudiantes, docentes y expertos nacionales e internacionales en un espacio de reflexión, creación y diálogo alrededor del diseño, consolidando a UNICESMAG como referente.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-buenamente-2025.jpg",
+    colorBg: "linear-gradient(135deg, #423002 0%, #1c1400 100%)",
   },
   {
     id: "n04",
-    tag: "Festival",
-    tagColor: "#a78bfa",
-    tagBg: "rgba(167,139,250,0.18)",
-    fecha: "May 2026",
-    titulo: "BuenaMente 2026 — Festival de Diseño y Cultura",
-    desc: "La décima edición del festival BuenaMente reunió conferencias magistrales, talleres abiertos y una feria de diseño editorial autogestida por estudiantes del programa.",
-    enlace: "comunidad.html",
-    img: null,
-    colorBg: "linear-gradient(135deg, #2e1a5c 0%, #160c30 100%)",
+    tag: "Impacto Comunitario",
+    tagColor: "#34d399",
+    tagBg: "rgba(52,211,153,0.18)",
+    fecha: "24 de octubre, 2025",
+    titulo: "Estudiantes de Diseño Gráfico entregan mural como resultado de un proceso comunitario",
+    desc: "Entrega oficial de una obra mural artística a la Institución Educativa Gimnasio San Juan de Pasto, una creación que refleja la unión viva entre arte, educación y comunidad.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-mural-gimnasio-2025.jpg",
+    colorBg: "linear-gradient(135deg, #0a3325 0%, #041810 100%)",
   },
   {
     id: "n05",
-    tag: "Egresados",
-    tagColor: "#34d399",
-    tagBg: "rgba(52,211,153,0.18)",
-    fecha: "Abr 2026",
-    titulo: "Egresados del programa reconocidos en Premio Lápiz de Acero",
-    desc: "Dos egresadas del Diseño Gráfico CESMAG obtuvieron menciones de honor en la categoría de Diseño Editorial del Premio Lápiz de Acero Colombia 2026.",
-    enlace: "comunidad.html",
-    img: null,
-    colorBg: "linear-gradient(135deg, #0a3325 0%, #041810 100%)",
+    tag: "Expresión Literaria",
+    tagColor: "#a78bfa",
+    tagBg: "rgba(167,139,250,0.18)",
+    fecha: "16 de agosto, 2024",
+    titulo: "Interdisciplinariedad en la creación literaria: Resultados de la clase de expresión literaria",
+    desc: "Los programas de Diseño Gráfico y Licenciatura en Educación Infantil unieron esfuerzos en una actividad interdisciplinar que articuló diseño editorial, narrativas infantiles e ilustración de autor.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-expresion-literaria-2024.jpg",
+    colorBg: "linear-gradient(135deg, #2d1555 0%, #120929 100%)",
+  },
+  {
+    id: "n06",
+    tag: "Identidad Institucional",
+    tagColor: "#6d4ac4",
+    tagBg: "rgba(109,74,196,0.22)",
+    fecha: "12 de octubre, 2023",
+    titulo: "Nueva Marca Diseño Gráfico Universidad CESMAG",
+    desc: "Después de 20 años de trayectoria, el programa de Diseño Gráfico renovó su identidad visual y sistema de marca, alineando sus valores históricos con la vanguardia visual contemporánea.",
+    enlace: "comunidad.html#noticias",
+    img: "assets/img/noticias/noticia-nueva-marca-2023.jpg",
+    colorBg: "linear-gradient(135deg, #221247 0%, #0c051f 100%)",
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   DATOS CONSOLIDADOS DE EGRESADOS & EMPLEABILIDAD (INFORMES OFICIALES)
+   ═══════════════════════════════════════════════════════════════ */
+const METRICAS_EGRESADOS = [
+  {
+    cifra: "92.6%",
+    label: "Tasa de Empleabilidad Activa",
+    sub: "Egresados laborando activamente en el sector productivo y cultural",
+    icono: "briefcase",
+  },
+  {
+    cifra: "91.9%",
+    label: "Inserción Laboral Rápida",
+    sub: "Consigue su primer empleo profesional en menos de 1 año (75.8% en ≤ 6 meses)",
+    icono: "clock",
+  },
+  {
+    cifra: "44.1%",
+    label: "Liderazgo & Emprendimiento",
+    sub: "Han fundado su propio estudio, empresa de diseño o marca comercial",
+    icono: "rocket",
+  },
+  {
+    cifra: "95.6%",
+    label: "Pertinencia & Utilidad Formativa",
+    sub: "Considera que la formación en UNICESMAG fue decisiva para su éxito laboral",
+    icono: "check-circle",
+  },
+];
+
+const SECTORES_EGRESADOS = [
+  { sector: "Emprendimiento & Empresas Propias", pct: 30.2, color: "#ff7054" },
+  { sector: "Agencias de Publicidad & Comunicación", pct: 30.2, color: "#6d4ac4" },
+  { sector: "Estudios & Agencias de Diseño", pct: 30.2, color: "#5bc0f5" },
+  { sector: "Gestión Pública & Organizaciones Privadas", pct: 30.2, color: "#ffc433" },
+  { sector: "Artes Gráficas & Sector Editorial", pct: 23.8, color: "#34d399" },
+  { sector: "Pequeñas & Medianas Empresas (MIPYMES)", pct: 23.8, color: "#a78bfa" },
+  { sector: "Producción Audiovisual & Animación", pct: 19.0, color: "#f472b6" },
+  { sector: "Docencia Universitaria & Educación", pct: 14.3, color: "#38bdf8" },
+  { sector: "Tecnología, UX/UI & Digital", pct: 9.5, color: "#fb923c" },
+];
+
+const EGRESADOS_DESTACADOS = [
+  {
+    nombre: "Jhonnathan Hormaza",
+    cohorte: "Egreso 2008 · 1ª Generación",
+    empresa: "Fundador de PIXIES STORE",
+    rol: "Diseñador de Producto & Art Toys",
+    descripcion: "Pionero de la primera cohorte del programa. Creó su propia marca y empresa Pixies Store, con participación en certámenes locales, nacionales e internacionales en las líneas de art toys, ilustración y producción artesanal de autor.",
+    distincion: "Reconocimiento institucional por liderazgo empresarial y diseño de autor",
+    avatar: "assets/img/egresados/jhonnathan-hormaza.jpg",
+  },
+  {
+    nombre: "Tatiana López",
+    cohorte: "Egresada Destacada",
+    empresa: "Gastrodiversa 10 Años (2025)",
+    rol: "Líder de Diseño & Proyección Gastronómica Regional",
+    descripcion: "Reconocida por su aporte y dirección visual en el evento de impacto nacional Gastrodiversa 10 años, articulando identidad territorial, diseño gráfico y patrimonio cultural.",
+    distincion: "Caso de éxito audiovisual y proyección comunitaria",
+    avatar: "assets/img/egresados/tatiana-lopez.jpg",
+  },
+  {
+    nombre: "Orlando Javier Ortiz Chaves",
+    cohorte: "Egreso 2010",
+    empresa: "Institución Universitaria EAM (Armenia)",
+    rol: "Docente Universitario & Diseñador Visual Digital",
+    descripcion: "Especialista en Art Toys y modelado digital. Conferencista invitado en intercambio de saberes académicos entre universidades de la región andina y del eje cafetero.",
+    distincion: "Lazos académicos interinstitucionales y docencia en educación superior",
+    avatar: "assets/img/egresados/orlando-ortiz.jpg",
+  },
+  {
+    nombre: "Jonathan Alejandro Aguirre Terán",
+    cohorte: "Egresado Distinguido",
+    empresa: "Gestión Cultural & Creación Visual",
+    rol: "Diseñador Cultural & Artista Visual",
+    descripcion: "Galardonado por sus significativos aportes al ámbito cultural de Nariño, impulsando procesos de diseño con impacto social y preservación de la memoria visual del territorio.",
+    distincion: "Mención por méritos culturales y compromiso territorial",
+    avatar: "assets/img/egresados/jonathan-aguirre.jpg",
+  },
+  {
+    nombre: "Camilo Andrés Varona Guerrero",
+    cohorte: "Egresado Distinguido & Docente",
+    empresa: "Coordinación de Egresados UNICESMAG",
+    rol: "Diseñador Gráfico, Docente & Gestor Académico",
+    descripcion: "Líder en articulación comunitaria, seguimiento a graduados y formulación de proyectos académicos continuos como los Diplomados de Art Toys y Diseño UX/UI.",
+    distincion: "Reconocimiento a la trayectoria profesional y docencia universitaria",
+    avatar: "assets/img/egresados/camilo-varona.jpg",
   },
 ];
 

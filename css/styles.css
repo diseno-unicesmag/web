@@ -945,27 +945,297 @@ h1, h2, h3, h4, h5 {
 .section--morado .section__sub { color: rgba(255, 255, 255, 0.92); }
 .section--morado .kicker { color: var(--amarillo); }
 
-/* ─────────────── Red de Egresados (Alumni) ─────────────── */
-.alumni { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.alumCard {
-  background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--radius); padding: 30px 24px; text-align: left;
+/* ─────────────── Noticias en Retícula (Comunidad) ─────────────── */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 10px;
+}
+.newsCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1.5px solid #e7e2ef;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px -10px rgba(30, 30, 36, 0.1);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.newsCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -12px rgba(109, 74, 196, 0.22);
+}
+.newsCard__media {
+  width: 100%;
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.newsCard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.newsCard:hover .newsCard__media img {
+  transform: scale(1.04);
+}
+.newsCard__placeholder-cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+}
+.newsCard__body {
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.newsCard__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.newsCard__tag {
+  font-family: var(--font-body);
+  font-size: .74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.newsCard__date {
+  font-family: var(--font-body);
+  font-size: .78rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.newsCard__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.newsCard__desc {
+  font-size: .92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+/* ─────────────── Métricas & Empleabilidad de Egresados ─────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 40px;
+}
+.metric-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius);
+  padding: 26px 20px;
+  text-align: center;
   backdrop-filter: blur(10px);
   transition: transform .25s ease, background .25s ease;
 }
-.alumCard:hover {
+.metric-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.16);
 }
-.alumCard__badge {
-  display: inline-block; font-family: var(--font-body);
-  font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  background: var(--white); color: var(--morado-deep);
-  padding: 4px 12px; border-radius: 6px; margin-bottom: 14px;
+.metric-card__icon {
+  color: var(--amarillo);
+  margin-bottom: 12px;
+  display: inline-flex;
 }
-.alumCard h3 { font-size: 1.18rem; color: var(--white); font-weight: 900; }
-.alumCard__role { font-family: var(--font-body); font-size: .84rem; color: var(--amarillo); font-weight: 700; margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
-.alumCard__desc { font-size: .92rem; color: rgba(255, 255, 255, 0.92); margin-top: 10px; line-height: 1.55; font-weight: 400; }
+.metric-card__cifra {
+  font-family: var(--font-brand);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.metric-card__label {
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--amarillo);
+  margin: 8px 0 6px;
+  line-height: 1.3;
+}
+.metric-card__sub {
+  font-size: .84rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* ─────────────── Sectores de Desempeño ─────────────── */
+.alumni-sectors {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  padding: 32px 34px;
+  margin-bottom: 44px;
+}
+.alumni-sectors__head h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.alumni-sectors__head p {
+  font-size: .92rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+}
+.alumni-sectors__bars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 36px;
+}
+.sector-bar-item__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.sector-bar-item__name {
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.sector-bar-item__pct {
+  font-family: var(--font-brand);
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--amarillo);
+}
+.sector-bar-item__track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.sector-bar-item__fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1s ease-out;
+}
+
+/* ─────────────── Egresados Destacados (Casos de Éxito) ─────────────── */
+.alumni-featured-head {
+  margin-bottom: 22px;
+}
+.egresados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.egresado-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  transition: transform .25s ease, background .25s ease;
+}
+.egresado-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.16);
+}
+.egresado-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.egresado-card__avatar-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--amarillo);
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);
+}
+.egresado-card__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.egresado-card__fallback-avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-brand);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--amarillo);
+  background: rgba(255, 196, 51, 0.15);
+}
+.egresado-card__titles h4 {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+}
+.egresado-card__cohorte {
+  display: block;
+  font-size: .78rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.egresado-card__empresa {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  color: var(--amarillo);
+  font-weight: 700;
+  margin-top: 3px;
+}
+.egresado-card__body {
+  flex-grow: 1;
+}
+.egresado-card__rol {
+  font-size: .88rem;
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+.egresado-card__desc {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  font-weight: 400;
+}
+.egresado-card__distincion {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  font-size: .82rem;
+  color: var(--amarillo);
+  font-weight: 600;
+  line-height: 1.35;
+}
 
 .alumni-callout {
   margin-top: 48px; background: rgba(0, 0, 0, 0.2);
@@ -974,6 +1244,19 @@ h1, h2, h3, h4, h5 {
 }
 .alumni-callout h3 { font-size: 1.25rem; font-weight: 900; color: var(--white); }
 .alumni-callout p { font-size: .92rem; color: rgba(255, 255, 255, 0.9); margin-top: 4px; font-weight: 400; }
+
+@media (max-width: 1024px) {
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .egresados-grid { grid-template-columns: repeat(2, 1fr); }
+  .alumni-sectors__bars { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .news-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .egresados-grid { grid-template-columns: 1fr; }
+}
 
 /* ─────────────── Perfiles y Campos de Acción ─────────────── */
 .perfiles-grid {

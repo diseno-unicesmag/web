@@ -62,42 +62,60 @@
     </div>
   </section>
 
-  <!-- ══════════════ RED DE EGRESADOS (ALUMNI) ══════════════ -->
+  <!-- ══════════════ 2 · NOTICIAS & ACTUALIDAD DEL PROGRAMA ══════════════ -->
+  <section class="section section--light" id="noticias">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Actualidad &amp; Vida Universitaria</p>
+        <h2>Noticias del Programa</h2>
+        <p class="section__sub">Acontecimientos, proyectos comunitarios, exposiciones y logros que marcan la agenda académica de Diseño Gráfico UNICESMAG.</p>
+      </header>
+
+      <div class="news-grid" id="noticiasGrid">
+        <!-- Renderizado dinámicamente desde js/data.js → NOTICIAS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 3 · IMPACTO, EMPLEABILIDAD & EGRESADOS ══════════════ -->
   <section class="section section--morado" id="alumni-section">
     <div class="container">
       <header class="section__head reveal">
-        <p class="kicker" style="color: var(--amarillo);">Alumni &amp; Territorio</p>
-        <h2 style="color: var(--white);">¿Dónde crean hoy nuestros egresados?</h2>
-        <p class="section__sub" style="color: rgba(255, 255, 255, 0.9);">Diseñadores gráficos del CESMAG liderando agencias, estudios de marca, productoras multimedia, laboratorios de ecodiseño y proyectos comunitarios en Colombia y el exterior.</p>
+        <p class="kicker" style="color: var(--amarillo);">Alumni &amp; Empleabilidad</p>
+        <h2 style="color: var(--white);">El Impacto Real de Nuestros Egresados</h2>
+        <p class="section__sub" style="color: rgba(255, 255, 255, 0.92);">Resultados consolidados de los informes oficiales de seguimiento a graduados: alta inserción en el mercado, liderazgo empresarial y transformación territorial.</p>
       </header>
 
-      <div class="alumni">
-        <article class="alumCard alumCard--featured reveal">
-          <div class="alumCard__badge">Branding &amp; Estrategia</div>
-          <h3>Agencias y Estudios Creativos</h3>
-          <p class="alumCard__role">Dirección de arte · Identidad visual · Packaging</p>
-          <p class="alumCard__desc">Nuestros graduados fundan y lideran estudios de diseño, creando sistemas de identidad para marcas regionales y nacionales.</p>
-        </article>
+      <!-- Métricas oficiales de empleabilidad -->
+      <div class="metrics-grid" id="metricasEgresadosGrid">
+        <!-- Renderizado dinámicamente desde js/data.js → METRICAS_EGRESADOS -->
+      </div>
 
-        <article class="alumCard alumCard--featured reveal">
-          <div class="alumCard__badge" style="background:rgba(91,192,245,.2);color:#5bc0f5;">Editorial &amp; Tipografía</div>
-          <h3>Sector Editorial &amp; Cultural</h3>
-          <p class="alumCard__role">Diseño editorial · Museografía · Ilustración</p>
-          <p class="alumCard__desc">Publicaciones de autor, gestión cultural en museos, identidades patrimoniales y proyectos premiados en convocatorias públicas.</p>
-        </article>
+      <!-- Sectores laborales & Campos de acción -->
+      <div class="alumni-sectors reveal">
+        <div class="alumni-sectors__head">
+          <h3>¿En qué sectores se desempeñan laboralmente?</h3>
+          <p>Distribución porcentual de los campos profesionales donde ejercen los graduados del programa.</p>
+        </div>
+        <div class="alumni-sectors__bars" id="sectoresEgresadosBars">
+          <!-- Renderizado dinámicamente desde js/data.js → SECTORES_EGRESADOS -->
+        </div>
+      </div>
 
-        <article class="alumCard alumCard--featured reveal">
-          <div class="alumCard__badge" style="background:rgba(142,110,232,.2);color:#ffc433;">Digital &amp; 3D</div>
-          <h3>Industrias Digitales &amp; UI/UX</h3>
-          <p class="alumCard__role">Motion design · Videojuegos · Interfaces</p>
-          <p class="alumCard__desc">Modelado 3D, desarrollo de interfaces interactivas y animación audiovisual en empresas de tecnología y entretenimiento.</p>
-        </article>
+      <!-- Egresados Destacados & Casos de Éxito -->
+      <div class="alumni-featured-head reveal">
+        <p class="kicker" style="color: var(--amarillo);">Casos de Éxito</p>
+        <h3 style="color: var(--white); font-size: 1.85rem; margin-top: 4px;">Egresados que Inspiran y Transforman</h3>
+      </div>
+
+      <div class="egresados-grid" id="egresadosGrid">
+        <!-- Renderizado dinámicamente desde js/data.js → EGRESADOS_DESTACADOS -->
       </div>
 
       <div class="alumni-callout reveal">
         <h3>¿Eres egresado de Diseño Gráfico UNICESMAG?</h3>
         <p>Mantén tu perfil activo en nuestra red, comparte tus casos de estudio y participa como mentor o conferencista invitado.</p>
-        <a href="admisiones.html" class="btn btn--primary btn--sm">Actualizar datos de egresado</a>
+        <a href="https://www.unicesmag.edu.co" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Actualizar datos de egresado</a>
       </div>
     </div>
   </section>

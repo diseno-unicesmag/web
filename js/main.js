@@ -189,7 +189,7 @@
     function buildNewsCard(n) {
       const glyph = NEWS_GLYPHS[n.tag] || "◆";
       const coverContent = n.img
-        ? '<img src="' + n.img + '" alt="' + n.titulo + '" loading="lazy">'
+        ? '<img src="' + n.img + '" alt="' + n.titulo + '" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'inline-block\';"><span class="news-card__glyph" aria-hidden="true" style="display:none;">' + glyph + '</span>'
         : '<span class="news-card__glyph" aria-hidden="true">' + glyph + '</span>';
       return (
         '<a class="news-card" href="' + n.enlace + '" aria-label="' + n.titulo + '">' +
@@ -633,6 +633,107 @@
           '<h3>' + eco.titulo + '</h3>' +
           '<p>' + eco.desc + '</p>' +
           '<div class="ecoCard__dest">' + eco.destacado + '</div>' +
+        '</article>'
+      );
+    }).join("");
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     NOTICIAS EN RETÍCULA (EN `comunidad.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const noticiasGrid = $("#noticiasGrid");
+  if (noticiasGrid && Array.isArray(NOTICIAS)) {
+    noticiasGrid.innerHTML = NOTICIAS.map((n) => {
+      const imgHtml = n.img
+        ? '<div class="newsCard__media" style="background:' + (n.colorBg || '#1e1435') + ';"><img src="' + n.img + '" alt="' + n.titulo + '" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="newsCard__placeholder-cover" style="display:none;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>'
+        : '<div class="newsCard__media" style="background:' + (n.colorBg || '#1e1435') + ';"><div class="newsCard__placeholder-cover"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>';
+
+      return (
+        '<article class="newsCard reveal">' +
+          imgHtml +
+          '<div class="newsCard__body">' +
+            '<div class="newsCard__meta">' +
+              '<span class="newsCard__tag" style="background:' + (n.tagBg || 'rgba(109,74,196,0.18)') + '; color:' + (n.tagColor || 'var(--morado)') + ';">' + n.tag + '</span>' +
+              '<span class="newsCard__date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:4px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + n.fecha + '</span>' +
+            '</div>' +
+            '<h3 class="newsCard__title">' + n.titulo + '</h3>' +
+            '<p class="newsCard__desc">' + n.desc + '</p>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join("");
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     MÉTRICAS & SECTORES DE EGRESADOS (EN `comunidad.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const metricasGrid = $("#metricasEgresadosGrid");
+  if (metricasGrid && Array.isArray(METRICAS_EGRESADOS)) {
+    const iconSvgs = {
+      briefcase: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+      clock: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      rocket: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>',
+      "check-circle": '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+    };
+
+    metricasGrid.innerHTML = METRICAS_EGRESADOS.map((m) => {
+      return (
+        '<div class="metric-card reveal">' +
+          '<div class="metric-card__icon">' + (iconSvgs[m.icono] || iconSvgs.briefcase) + '</div>' +
+          '<div class="metric-card__cifra">' + m.cifra + '</div>' +
+          '<div class="metric-card__label">' + m.label + '</div>' +
+          '<div class="metric-card__sub">' + m.sub + '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  const sectoresBars = $("#sectoresEgresadosBars");
+  if (sectoresBars && Array.isArray(SECTORES_EGRESADOS)) {
+    sectoresBars.innerHTML = SECTORES_EGRESADOS.map((s) => {
+      return (
+        '<div class="sector-bar-item reveal">' +
+          '<div class="sector-bar-item__info">' +
+            '<span class="sector-bar-item__name">' + s.sector + '</span>' +
+            '<span class="sector-bar-item__pct">' + s.pct + '%</span>' +
+          '</div>' +
+          '<div class="sector-bar-item__track">' +
+            '<div class="sector-bar-item__fill" style="width: ' + s.pct + '%; background: ' + s.color + ';"></div>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     EGRESADOS DESTACADOS (EN `comunidad.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const egresadosGrid = $("#egresadosGrid");
+  if (egresadosGrid && Array.isArray(EGRESADOS_DESTACADOS)) {
+    egresadosGrid.innerHTML = EGRESADOS_DESTACADOS.map((eg) => {
+      const initials = eg.nombre.split(" ").map(w => w[0]).slice(0, 2).join("");
+      const avatarHtml = eg.avatar
+        ? '<div class="egresado-card__avatar-wrap"><img src="' + eg.avatar + '" alt="' + eg.nombre + '" class="egresado-card__avatar" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="egresado-card__fallback-avatar" style="display:none;">' + initials + '</div></div>'
+        : '<div class="egresado-card__avatar-wrap"><div class="egresado-card__fallback-avatar">' + initials + '</div></div>';
+
+      return (
+        '<article class="egresado-card reveal">' +
+          '<div class="egresado-card__header">' +
+            avatarHtml +
+            '<div class="egresado-card__titles">' +
+              '<h4>' + eg.nombre + '</h4>' +
+              '<span class="egresado-card__cohorte">' + eg.cohorte + '</span>' +
+              '<span class="egresado-card__empresa">' + eg.empresa + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="egresado-card__body">' +
+            '<p class="egresado-card__rol"><strong>' + eg.rol + '</strong></p>' +
+            '<p class="egresado-card__desc">' + eg.descripcion + '</p>' +
+          '</div>' +
+          '<div class="egresado-card__distincion">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:5px;"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>' +
+            eg.distincion +
+          '</div>' +
         '</article>'
       );
     }).join("");
