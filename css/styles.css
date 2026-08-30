@@ -2231,35 +2231,35 @@ a.cd-item:hover {
   background: var(--white);
   border-radius: var(--radius);
   border: 1px solid #e7e2ed;
+  border-top: 4px solid var(--card-accent, var(--morado));
   box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.06);
-  padding: 26px;
+  padding: 26px 26px 24px;
   display: flex;
   flex-direction: column;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
 }
 .docente-card:hover {
   transform: translateY(-6px);
-  border-color: var(--morado);
-  box-shadow: 0 16px 36px -8px var(--morado-glow);
+  box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.12);
 }
 
 .docente-card__header {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
-  margin-bottom: 18px;
-  padding-bottom: 16px;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid #f0ecf4;
 }
 
 .docente-card__avatar-wrap {
-  width: 76px;
-  height: 76px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--morado-light);
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   background: #f4f0fa;
 }
 .docente-card__avatar {
@@ -2286,13 +2286,30 @@ a.cd-item:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 4px;
+}
+.docente-card__tag {
+  align-self: flex-start;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 2px;
 }
 .docente-card__name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--ink);
   line-height: 1.25;
+  margin: 0;
+}
+.docente-card__destacado {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--morado);
+  line-height: 1.35;
   margin: 0;
 }
 
@@ -2300,9 +2317,9 @@ a.cd-item:hover {
   flex: 1;
 }
 .docente-card__perfil {
-  font-size: .88rem;
-  color: var(--ink);
-  line-height: 1.6;
+  font-size: .86rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
   margin: 0;
 }
 

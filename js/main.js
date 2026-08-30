@@ -858,11 +858,13 @@
           : '<div class="docente-card__avatar-wrap" style="border-color: ' + (d.color || "var(--morado)") + ';"><div class="docente-card__fallback-avatar" style="color:' + (d.color || "var(--morado)") + ';">' + initials + '</div></div>';
 
         return (
-          '<article class="docente-card reveal">' +
+          '<article class="docente-card reveal" style="--card-accent: ' + (d.color || "var(--morado)") + ';">' +
             '<div class="docente-card__header">' +
               avatarHtml +
               '<div class="docente-card__meta">' +
+                '<span class="docente-card__tag" style="background: ' + (d.color || "var(--morado)") + '18; color: ' + (d.color || "var(--morado)") + '; border: 1px solid ' + (d.color || "var(--morado)") + '38;">' + d.tag + '</span>' +
                 '<h3 class="docente-card__name">' + d.nombre + '</h3>' +
+                '<p class="docente-card__destacado">' + d.destacado + '</p>' +
               '</div>' +
             '</div>' +
             '<div class="docente-card__body">' +
