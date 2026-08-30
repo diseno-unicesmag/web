@@ -870,16 +870,12 @@
             '</div>' +
             '<div class="docente-card__body">' +
               '<div class="docente-card__detail">' +
-                '<span class="docente-card__lbl">Cargo / Rol:</span>' +
+                '<span class="docente-card__lbl">Rol Académico:</span>' +
                 '<p>' + d.cargo + '</p>' +
               '</div>' +
               '<div class="docente-card__detail">' +
-                '<span class="docente-card__lbl">Asignaturas de Taller:</span>' +
-                '<p>' + d.asignaturas + '</p>' +
-              '</div>' +
-              '<div class="docente-card__detail">' +
-                '<span class="docente-card__lbl">Línea de Creación / Investigación:</span>' +
-                '<p>' + d.investigacion + '</p>' +
+                '<span class="docente-card__lbl">Trayectoria &amp; Enfoque:</span>' +
+                '<p>' + d.trayectoria + '</p>' +
               '</div>' +
             '</div>' +
           '</article>'
