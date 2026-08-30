@@ -72,14 +72,9 @@
   <!-- ══════════════ CATÁLOGO Y FILTROS DE PROFESORES ══════════════ -->
   <section class="section section--light">
     <div class="container">
-      <!-- Filtros por área disciplinar -->
-      <div class="filters reveal" id="docentesFilters" role="tablist" aria-label="Filtrar docentes por área">
-        <button class="filter is-active" data-filter="todos" role="tab" aria-selected="true">Todos los docentes</button>
-        <button class="filter" data-filter="taller" role="tab" aria-selected="false">Taller &amp; Gestión</button>
-        <button class="filter" data-filter="digital" role="tab" aria-selected="false">Medios Digitales &amp; 3D</button>
-        <button class="filter" data-filter="editorial" role="tab" aria-selected="false">Editorial, Foto &amp; Gráfica</button>
-        <button class="filter" data-filter="publicidad" role="tab" aria-selected="false">Branding &amp; Estrategia</button>
-        <button class="filter" data-filter="teoria" role="tab" aria-selected="false">Investigación &amp; Humanidades</button>
+      <!-- Buscador de Docentes -->
+      <div class="docentes-search-wrap reveal" style="max-width: 540px; margin: 0 auto 36px;">
+        <input type="text" id="docenteSearch" placeholder="Buscar docente por nombre o especialidad..." style="width: 100%; padding: 14px 20px; border-radius: 999px; border: 1.5px solid #dcd7e5; font-size: .95rem; font-family: var(--font-body); box-shadow: 0 4px 14px rgba(0,0,0,0.04); outline: none; transition: border-color .2s ease;" onfocus="this.style.borderColor='var(--morado)'" onblur="this.style.borderColor='#dcd7e5'">
       </div>
 
       <!-- Retícula de Docentes -->

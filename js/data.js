@@ -1063,124 +1063,101 @@ const EGRESADOS_DESTACADOS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   CUERPO DOCENTE & INVESTIGADORES (PROFESORADO)
+   CUERPO DOCENTE (PROFESORADO OFICIAL)
    ═══════════════════════════════════════════════════════════════ */
-/* ═══════════════════════════════════════════════════════════════
-   CUERPO DOCENTE & INVESTIGADORES (PROFESORADO)
-   ═══════════════════════════════════════════════════════════════ */
-const DOCENTES_AREAS = {
-  taller:     { label: "Eje de Taller & Gestión", color: "#6d4ac4" },
-  digital:    { label: "Medios Digitales, 3D & TIC", color: "#ffc433" },
-  editorial:  { label: "Editorial, Fotografía & Gráfica", color: "#5bc0f5" },
-  publicidad: { label: "Branding, Estrategia & Publicidad", color: "#ff7054" },
-  teoria:     { label: "Investigación & Humanidades", color: "#6d4ac4" },
-};
-
 const DOCENTES = [
   {
     id: "doc-01",
-    nombre: "Karen Eugenia Ocaña Figueroa",
-    area: "taller",
-    cargo: "Directora del Programa de Diseño Gráfico · Docente Universitaria",
-    perfil:
-      "Diseñadora industrial de la Universidad de Nariño, graduada de la Maestría en Diseño Urbano y Arquitectónico Sustentable de la Universidad Gestalt de Diseño, México, y especialista en Diseño de Mobiliario de la Universidad de Buenos Aires, Argentina. Docente universitaria con más de seis años de experiencia en las áreas del Diseño Gráfico e Industrial.",
-    avatar: "assets/img/profesores/karen-ocana.png",
-  },
-  {
-    id: "doc-02",
-    nombre: "Mauricio Montenegro",
-    area: "digital",
-    cargo: "Docente Investigador · TIC & Multimedia",
-    perfil:
-      "Doctorado Universidad Tecnológica Tech: Doctorado en Tecnologías de la Información y la Comunicación | Maestría Universidad Internacional de La Rioja: Máster universitario en Tecnología Educativa y Competencias Digitales | Pregrado Universidad de Nariño: Diseño Gráfico y Multimedial | Pregrado INDESCO - Universidad Cooperativa de Colombia: Ingeniería de Sistemas | Pregrado Universidad de Nariño: Licenciatura en Informática.",
-    avatar: "assets/img/profesores/mauricio-montenegro.png",
-  },
-  {
-    id: "doc-03",
-    nombre: "Karol Ibarra",
-    area: "digital",
-    cargo: "Docente de Planta · Humanidades Digitales",
-    perfil:
-      "Diseñadora Industrial | Magíster en Humanidades Digitales | Especialista en Gestión Estratégica del Diseño | Especialista en Lógica y Técnica de la Forma.",
-    avatar: "assets/img/profesores/karol-ibarra.png",
-  },
-  {
-    id: "doc-04",
     nombre: "Edison Armando Ramos Bastidas",
-    area: "publicidad",
-    cargo: "Docente de Taller · Estrategia de Marca",
+    color: "#ff7054",
     perfil:
       "Profesional en diseño, estratega en comunicación y planeador de marca enfocado en la región de Nariño, Colombia.",
     avatar: "assets/img/profesores/edison-ramos.png",
   },
   {
-    id: "doc-05",
-    nombre: "Karol Suárez",
-    area: "taller",
-    cargo: "Docente de Planta · Innovación y Producto",
+    id: "doc-02",
+    nombre: "Karol Ibarra",
+    color: "#ffc433",
     perfil:
-      "Diseñadora Industrial de la Universidad de Nariño, Especialización en Gerencia de Diseño de la Universidad Jorge Tadeo Lozano, Magíster en Desarrollo de Proyectos en Innovación y Producto de la Universidad Internacional Iberoamericana de Puerto Rico y Candidata a Magíster en Diseño para la Innovación Social.",
+      "Diseñadora Industrial | Magíster en Humanidades Digitales | Especialista en Gestión Estratégica del Diseño | Especialista en Lógica y Técnica de la Forma.",
+    avatar: "assets/img/profesores/karol-ibarra.png",
+  },
+  {
+    id: "doc-03",
+    nombre: "Karen Ocaña",
+    color: "#6d4ac4",
+    perfil:
+      "Diseñadora industrial de la Universidad de Nariño, graduada de la Maestría en Diseño Urbano y Arquitectónico Sustentable de la Universidad Gestalt de Diseño, México, y especialista en Diseño de Mobiliario de la Universidad de Buenos Aires, Argentina. Docente universitaria con más de seis años de experiencia en las áreas del Diseño Gráfico e Industrial.",
+    avatar: "assets/img/profesores/karen-ocana.png",
+  },
+  {
+    id: "doc-04",
+    nombre: "Mauricio Montenegro",
+    color: "#ffc433",
+    perfil:
+      "Doctorado Universidad Tecnológica Tech: Doctorado en Tecnologías de la Información y la comunicación, Maestría/Magister Universidad Internacional de la Rioja, Máster univeristario en tecnología educativa y competencias digitales, pregrado/Universitario UNIVERSIDAD DE NARIÑO, DISEÑO GRAFICO Y MULTIMEDIAL, Pregrado/Universitario INDESCO - Universidad Cooperativa de Colombia, Ingeniería de Sistemas Pregrado/Universitario UNIVERSIDAD DE NARIÑO, LICENCIATURA EN INFORMATICA.",
+    avatar: "assets/img/profesores/mauricio-montenegro.png",
+  },
+  {
+    id: "doc-05",
+    nombre: "Karol Suarez",
+    color: "#ff7054",
+    perfil:
+      "Diseñadora Industrial de la Universidad de Nariño, Especialización en Gerencia de Diseño de la Universidad Jorge Tadeo Lozano, Magister en Desarrollo de Proyectos en Innovación y Producto de la Universidad Internacional Iberoamericana de Puerto Rico y Candidata a Magister en Diseño para la Innovación Social.",
     avatar: "assets/img/profesores/karol-suarez.png",
   },
   {
     id: "doc-06",
     nombre: "Mauricio Feuillet",
-    area: "taller",
-    cargo: "Docente de Diseño · Innovación Social",
+    color: "#ff7054",
     perfil:
-      "Diseñador Industrial, Docente Diseño, Especialista en Docencia Universitaria, Especialista en Gerencia en Diseño y Candidato a Magíster en Diseño para la Innovación Social.",
+      "Diseñador Industrial, Docente Diseño, Especialista en Docencia Universitaria, Especialista en Gerencia en Diseño y Candidato a Magister en Diseño para la Innovación Social.",
     avatar: "assets/img/profesores/mauricio-feuillet.png",
   },
   {
     id: "doc-07",
     nombre: "Arturo De la Cruz",
-    area: "digital",
-    cargo: "Docente Investigador · Artes Mediales",
+    color: "#ffc433",
     perfil:
-      "Ingeniero de Sistemas, Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg) – Universidad de Chile – Universidad de Caldas y Magíster en Diseño y Creación Interactiva de la Universidad de Caldas.",
+      "Ingeniero de Sistemas, Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg) – Universidad de Chile – Universidad de Caldas y Magister en Diseño y Creación Interactiva de la Universidad de Caldas.",
     avatar: "assets/img/profesores/arturo-de-la-cruz.png",
   },
   {
     id: "doc-08",
     nombre: "Mateo Terán",
-    area: "publicidad",
-    cargo: "Docente de Taller · Identidad Corporativa",
+    color: "#ff7054",
     perfil:
-      "Diseñador Gráfico, Magíster en Comunicación e Identidad Corporativa de la Universidad Internacional de La Rioja.",
+      "Diseñador Gráfico, Magister en comunicación e identidad corporativa de la Universidad Internacional de la Rioja.",
     avatar: "assets/img/profesores/mateo-teran.png",
   },
   {
     id: "doc-09",
     nombre: "Ramón Ortega",
-    area: "digital",
-    cargo: "Docente de Planta · Creación Interactiva",
+    color: "#ffc433",
     perfil:
-      "Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg) – Universidad de Chile – Universidad de Caldas y Magíster en Diseño y Creación Interactiva de la Universidad de Caldas. Miembro del Consejo Directivo de la Red Colombiana Académica de Diseño RAD periodo 2016-2018.",
+      "Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg)- Universidad de Chile – Universidad de Caldas y Magister en Diseño y Creación Interactiva de la Universidad de Caldas. Miembro del Consejo Directivo de la Red Colombiana Académica de Diseño RAD periodo 2016-2018.",
     avatar: "assets/img/profesores/ramon-ortega.png",
   },
   {
     id: "doc-10",
     nombre: "Fernando Coral",
-    area: "digital",
-    cargo: "Docente de Medios Audiovisuales · Gerencia del Diseño",
+    color: "#ffc433",
     perfil:
-      "Tecnólogo en Producción de Radio y Televisión del Colegio Superior de Telecomunicaciones, Diseñador Gráfico de la Universidad Jorge Tadeo Lozano, Especialista en Gerencia del Diseño de la Universidad Jorge Tadeo Lozano y Magíster en Diseño y Creación Interactiva de la Universidad de Caldas.",
+      "Tecnólogo en Producción de Radio y Televisión del Colegio Superior de Telecomunicaciones, Diseñador Gráfico de la Universidad Jorge Tadeo Lozano, Especialista en Gerencia del Diseño de la Universidad Jorge Tadeo Lozano y Magister en diseño y creación interactiva de la Universidad de Caldas.",
     avatar: "assets/img/profesores/fernando-coral.png",
   },
   {
     id: "doc-11",
     nombre: "Amanda Arteaga",
-    area: "teoria",
-    cargo: "Docente Investigadora · Etnoliteratura",
+    color: "#6d4ac4",
     perfil:
-      "Docente Investigadora, Magíster en Etnoliteratura, Especialización en Estudios Latinoamericanos, Pregrado en Filosofía, Cursos de corta duración Universidad, Investigación diplomado en Identidad Gorettiana, diplomado en Pensamiento de Diseño.",
+      "Docente Investigadora, Magister en Etnoliteratura, Especialización de Estudios latinoamericanos, Pregrado en filosofia, Cursos de corta duración Universidad, Investigación diplomado en Identidad Gorettiana, diplomado en Pensamiento de Diseño.",
     avatar: "assets/img/profesores/amanda-arteaga.png",
   },
   {
     id: "doc-12",
     nombre: "Carlos Jiménez",
-    area: "editorial",
-    cargo: "Docente de Fotografía, Editorial & Museografía",
+    color: "#5bc0f5",
     perfil:
       "Diseñador Gráfico, Investigador y Fotógrafo colombiano. Mi experiencia abarca el Diseño Editorial, Publicitario, Branding y Museografía, así como la Fotografía de Paisaje, Naturaleza y Arquitectura. Además, me he aventurado en la producción audiovisual hasta la creación de cortometrajes, Mi carrera se ha caracterizado por un compromiso constante con la constancia y la innovación mediante la fotografía, llevándome a espacios de reconocimiento internacional como los Sony World Photography Awards o los 35Awards.",
     avatar: "assets/img/profesores/carlos-jimenez.png",
@@ -1188,46 +1165,17 @@ const DOCENTES = [
   {
     id: "doc-13",
     nombre: "Juan Pinzón",
-    area: "editorial",
-    cargo: "Docente Invitado · Fotografía Documental",
+    color: "#5bc0f5",
     perfil:
-      "Fotógrafo colombiano, residente en México, Diseñador de Comunicación Visual de la Universidad Javeriana de Cali Colombia y candidato a Magíster en Diseño Fotográfico por la Universidad Iberoamericana de México. Actualmente se desempeña como profesor tiempo completo de la Universidad de Celaya y profesor por horas en la Universidad Latina de México (Celaya). Su trabajo de perfil documental se centra en desarrollar proyectos de fondo cultural donde exalta el valor del ser humano como eje fundamental de la memoria, conservación y evolución cultural.",
+      "Fotógrafo colombiano, residente en México, Diseñador de Comunicación Visual de la Universidad Javeriana de Cali Colombia y candidato a Magister en Diseño Fotográfico por la Univesidad Iberoamericana de México. Actualmente se desempeña como profesor tiempo completo de la Universidad de Celaya y profesor por horas en la Universidad Latina de México (Celaya). Su trabajo de perfil documental se centra en desarrollar proyectos de fondo cultural donde exalta el valor del ser humano como eje fundamental de la memoria, conservación y evolución cultural.",
     avatar: "assets/img/profesores/juan-pinzon.png",
   },
   {
     id: "doc-14",
     nombre: "Camilo Varona",
-    area: "taller",
-    cargo: "Docente de Taller · Art Toys & Ilustración",
+    color: "#6d4ac4",
     perfil:
       "Diseñador gráfico de la Universidad CESMAG, encontró en la ilustración y la cuentería una forma de dar vida a la tradición oral que marcó su infancia. En 2012 fundó su taller Makaco, dedicado a la creación artesanal de art toys, donde fusiona técnica, narrativa y memoria. Su obra, reconocida dentro y fuera del país, transforma el juego en arte y la artesanía en un lenguaje contemporáneo. Como maestro artesano contemporáneo, su trabajo celebra la imaginación y rescata las historias del territorio, recordando que cada pieza es un pequeño universo hecho a mano.",
     avatar: "assets/img/profesores/camilo-varona.png",
-  },
-  {
-    id: "doc-15",
-    nombre: "Leonardo Hidalgo",
-    area: "editorial",
-    cargo: "Docente de Taller · Tipografía y Medios Digitales",
-    perfil:
-      "Diseñador Gráfico con trayectoria docente en tipografía aplicada, procesos editoriales y experimentación visual en medios impresos y digitales.",
-    avatar: "assets/img/profesores/leonardo-hidalgo.png",
-  },
-  {
-    id: "doc-16",
-    nombre: "Natalia Timarán",
-    area: "teoria",
-    cargo: "Docente Investigadora · Diseño Social",
-    perfil:
-      "Diseñadora Gráfica, docente e investigadora enfocada en procesos creativos, diseño social participativo y proyectos comunitarios en el suroccidente colombiano.",
-    avatar: "assets/img/profesores/natalia-timaran.png",
-  },
-  {
-    id: "doc-17",
-    nombre: "Wilmer Zambrano",
-    area: "digital",
-    cargo: "Docente de Laboratorios Digitales · Producción",
-    perfil:
-      "Diseñador Gráfico, docente de laboratorios digitales y producción gráfica con énfasis en modelado, preprensa y medios interactivos.",
-    avatar: "assets/img/profesores/wilmer-zambrano.png",
   },
 ];

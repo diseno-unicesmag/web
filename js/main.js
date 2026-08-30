@@ -842,29 +842,27 @@
      CATÁLOGO DE DOCENTES (EN `docentes.html`)
      ═══════════════════════════════════════════════════════════════ */
   const docentesGrid = $("#docentesGrid");
-  const docentesFilters = $("#docentesFilters");
+  const docenteSearchInput = $("#docenteSearch");
 
   if (docentesGrid && Array.isArray(DOCENTES)) {
-    function renderDocentes(filterArea) {
-      const filtered = filterArea === "todos"
-        ? DOCENTES
-        : DOCENTES.filter((d) => d.area === filterArea);
+    function renderDocentes(query) {
+      const q = (query || "").toLowerCase().trim();
+      const filtered = q
+        ? DOCENTES.filter((d) => d.nombre.toLowerCase().includes(q) || d.perfil.toLowerCase().includes(q))
+        : DOCENTES;
 
       docentesGrid.innerHTML = filtered.map((d) => {
-        const areaInfo = (typeof DOCENTES_AREAS !== "undefined" && DOCENTES_AREAS[d.area]) || { label: "Diseño Gráfico", color: "#ffc433" };
         const initials = d.nombre.split(" ").map(w => w[0]).filter(c => /[A-ZÁÉÍÓÚÑ]/.test(c)).slice(0, 2).join("");
         const avatarHtml = d.avatar
-          ? '<div class="docente-card__avatar-wrap"><img src="' + d.avatar + '" alt="' + d.nombre + '" class="docente-card__avatar" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="docente-card__fallback-avatar" style="display:none;">' + initials + '</div></div>'
-          : '<div class="docente-card__avatar-wrap"><div class="docente-card__fallback-avatar">' + initials + '</div></div>';
+          ? '<div class="docente-card__avatar-wrap" style="border-color: ' + (d.color || "var(--morado)") + ';"><img src="' + d.avatar + '" alt="' + d.nombre + '" class="docente-card__avatar" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="docente-card__fallback-avatar" style="display:none; color:' + (d.color || "var(--morado)") + ';">' + initials + '</div></div>'
+          : '<div class="docente-card__avatar-wrap" style="border-color: ' + (d.color || "var(--morado)") + ';"><div class="docente-card__fallback-avatar" style="color:' + (d.color || "var(--morado)") + ';">' + initials + '</div></div>';
 
         return (
-          '<article class="docente-card reveal" data-area="' + d.area + '">' +
+          '<article class="docente-card reveal">' +
             '<div class="docente-card__header">' +
               avatarHtml +
               '<div class="docente-card__meta">' +
-                '<span class="docente-card__tag" style="background: ' + areaInfo.color + '22; color: ' + areaInfo.color + '; border: 1px solid ' + areaInfo.color + '44;">' + areaInfo.label + '</span>' +
                 '<h3 class="docente-card__name">' + d.nombre + '</h3>' +
-                '<p class="docente-card__cargo">' + d.cargo + '</p>' +
               '</div>' +
             '</div>' +
             '<div class="docente-card__body">' +
@@ -877,19 +875,11 @@
       $$(".reveal", docentesGrid).forEach((el) => io.observe(el));
     }
 
-    renderDocentes("todos");
+    renderDocentes("");
 
-    if (docentesFilters) {
-      $$(".filter", docentesFilters).forEach((btn) => {
-        btn.addEventListener("click", () => {
-          $$(".filter", docentesFilters).forEach((b) => {
-            b.classList.remove("is-active");
-            b.setAttribute("aria-selected", "false");
-          });
-          btn.classList.add("is-active");
-          btn.setAttribute("aria-selected", "true");
-          renderDocentes(btn.dataset.filter);
-        });
+    if (docenteSearchInput) {
+      docenteSearchInput.addEventListener("input", (e) => {
+        renderDocentes(e.target.value);
       });
     }
   }

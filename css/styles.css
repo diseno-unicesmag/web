@@ -2286,29 +2286,14 @@ a.cd-item:hover {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-.docente-card__tag {
-  align-self: flex-start;
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
+  justify-content: center;
 }
 .docente-card__name {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--ink);
   line-height: 1.25;
-  margin-bottom: 4px;
-}
-.docente-card__cargo {
-  font-size: .84rem;
-  font-weight: 600;
-  color: var(--morado);
-  line-height: 1.35;
+  margin: 0;
 }
 
 .docente-card__body {
@@ -2316,8 +2301,8 @@ a.cd-item:hover {
 }
 .docente-card__perfil {
   font-size: .88rem;
-  color: var(--ink-soft);
-  line-height: 1.55;
+  color: var(--ink);
+  line-height: 1.6;
   margin: 0;
 }
 
