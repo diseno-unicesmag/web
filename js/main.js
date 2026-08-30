@@ -145,16 +145,19 @@
     tapeTrack.innerHTML = PROYECTOS.map((p) => {
       const cat = CATEGORIES[p.categoria] || { label: p.categoria, color: "#ffc433" };
       const bg = CAT_GRADIENTS[p.categoria] || "linear-gradient(135deg, #6d4ac4 0%, #231545 100%)";
-      const glyph = CAT_GLYPHS[p.categoria] || "DG";
+      const coverHtml = p.img
+        ? '<img src="' + p.img + '" alt="' + p.titulo + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">'
+        : '<span class="tape-card__glyph" aria-hidden="true">' + (CAT_GLYPHS[p.categoria] || "DG") + '</span>';
+
       return (
         '<div class="tape-card" data-id="' + p.id + '" role="button" tabindex="0" aria-label="Ver proyecto ' + p.titulo + '">' +
           '<div class="tape-card__cover" style="background:' + bg + ';">' +
             '<span class="tape-card__cat" style="color:' + cat.color + ';">' + cat.label + '</span>' +
-            '<span class="tape-card__glyph" aria-hidden="true">' + glyph + '</span>' +
+            coverHtml +
           '</div>' +
           '<div class="tape-card__body">' +
             '<h4>' + p.titulo + '</h4>' +
-            '<p>' + p.semestre + ' · ' + p.herramientas + '</p>' +
+            '<p>' + p.estudiante + ' · ' + p.semestre + '</p>' +
           '</div>' +
         '</div>'
       );
