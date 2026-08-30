@@ -862,21 +862,13 @@
             '<div class="docente-card__header">' +
               avatarHtml +
               '<div class="docente-card__meta">' +
-                '<span class="docente-card__tag" style="background: ' + areaInfo.color + '22; color: ' + areaInfo.color + ';">' + areaInfo.label + '</span>' +
+                '<span class="docente-card__tag" style="background: ' + areaInfo.color + '22; color: ' + areaInfo.color + '; border: 1px solid ' + areaInfo.color + '44;">' + areaInfo.label + '</span>' +
                 '<h3 class="docente-card__name">' + d.nombre + '</h3>' +
-                '<p class="docente-card__titulo"><strong>' + d.titulo + '</strong></p>' +
-                '<p class="docente-card__pregrado">' + d.pregrado + '</p>' +
+                '<p class="docente-card__cargo">' + d.cargo + '</p>' +
               '</div>' +
             '</div>' +
             '<div class="docente-card__body">' +
-              '<div class="docente-card__detail">' +
-                '<span class="docente-card__lbl">Rol Académico:</span>' +
-                '<p>' + d.cargo + '</p>' +
-              '</div>' +
-              '<div class="docente-card__detail">' +
-                '<span class="docente-card__lbl">Trayectoria &amp; Enfoque:</span>' +
-                '<p>' + d.trayectoria + '</p>' +
-              '</div>' +
+              '<p class="docente-card__perfil">' + d.perfil + '</p>' +
             '</div>' +
           '</article>'
         );

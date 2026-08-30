@@ -2298,45 +2298,27 @@ a.cd-item:hover {
   margin-bottom: 6px;
 }
 .docente-card__name {
-  font-size: 1.12rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--ink);
   line-height: 1.25;
   margin-bottom: 4px;
 }
-.docente-card__titulo {
+.docente-card__cargo {
   font-size: .84rem;
+  font-weight: 600;
   color: var(--morado);
   line-height: 1.35;
-  margin-bottom: 2px;
-}
-.docente-card__pregrado {
-  font-size: .78rem;
-  color: var(--ink-soft);
 }
 
 .docente-card__body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   flex: 1;
 }
-.docente-card__detail {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.docente-card__lbl {
-  font-size: .74rem;
-  font-weight: 700;
+.docente-card__perfil {
+  font-size: .88rem;
   color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.docente-card__detail p {
-  font-size: .86rem;
-  color: var(--ink);
-  line-height: 1.4;
+  line-height: 1.55;
+  margin: 0;
 }
 
 .docentes-callout {
