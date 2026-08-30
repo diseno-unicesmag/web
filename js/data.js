@@ -1065,9 +1065,6 @@ const EGRESADOS_DESTACADOS = [
 /* ═══════════════════════════════════════════════════════════════
    CUERPO DOCENTE (PROFESORADO OFICIAL)
    ═══════════════════════════════════════════════════════════════ */
-/* ═══════════════════════════════════════════════════════════════
-   CUERPO DOCENTE (PROFESORADO OFICIAL)
-   ═══════════════════════════════════════════════════════════════ */
 const DOCENTES = [
   {
     id: "doc-01",
@@ -1102,7 +1099,7 @@ const DOCENTES = [
   {
     id: "doc-04",
     nombre: "Mauricio Montenegro",
-    tag: "Doctor en TIC & Multimedia",
+    tag: "Tecnología & Multimedia",
     destacado: "Doctor en Tecnologías de la Información y la Comunicación (Tech)",
     color: "#ffc433",
     perfil:
