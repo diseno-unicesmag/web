@@ -1746,25 +1746,32 @@ a.cd-item:hover {
 .news-carousel-wrap {
   width: 100%;
   overflow: hidden;
-  padding-bottom: 50px;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  padding: 36px 0 52px;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
 }
 .news-track {
   display: flex;
-  gap: 22px;
+  gap: 24px;
   width: max-content;
-  padding: 8px 48px 8px;
-  animation: newsScroll 38s linear infinite;
+  animation: newsScroll 60s linear infinite;
   cursor: grab;
   user-select: none;
+  will-change: transform;
 }
 .news-track:active { cursor: grabbing; }
 .news-track:hover { animation-play-state: paused; }
 
+.news-track__group {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
 @keyframes newsScroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(calc(-50% - 12px)); }
 }
 
 /* Tarjeta individual */
@@ -1773,17 +1780,19 @@ a.cd-item:hover {
   width: 320px;
   border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex; flex-direction: column;
-  transition: transform .3s ease, box-shadow .3s ease;
+  transition: transform .28s cubic-bezier(0.2, 0, 0, 1), box-shadow .28s ease, border-color .28s ease;
   text-decoration: none; color: inherit;
   position: relative;
   background: var(--white);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,.3);
+  box-shadow: 0 8px 24px -6px rgba(0,0,0,.35);
+  cursor: pointer;
 }
 .news-card:hover {
-  transform: translateY(-6px) scale(1.015);
-  box-shadow: 0 18px 48px -12px rgba(0,0,0,.45);
+  transform: translateY(-10px);
+  border-color: rgba(255, 196, 51, 0.45);
+  box-shadow: 0 24px 50px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 196, 51, 0.25);
 }
 .news-card__cover {
   height: 175px;

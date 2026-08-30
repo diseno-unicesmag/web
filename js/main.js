@@ -210,9 +210,14 @@
       );
     }
 
-    /* Duplicar las tarjetas para que el loop CSS sea infinito */
-    const cardsHTML = NOTICIAS.map(buildNewsCard).join("");
-    newsTrack.innerHTML = cardsHTML + cardsHTML; // duplicado para loop sin salto
+    /* Generar bloque de tarjetas (repetido para tener densidad en pantallas ultra-anchas) */
+    const singleSetHTML = NOTICIAS.map(buildNewsCard).join("");
+    const groupCardsHTML = singleSetHTML + singleSetHTML; // 12 tarjetas por grupo
+
+    /* Renderizar dos grupos idénticos dentro de newsTrack */
+    newsTrack.innerHTML =
+      '<div class="news-track__group">' + groupCardsHTML + '</div>' +
+      '<div class="news-track__group" aria-hidden="true">' + groupCardsHTML + '</div>';
 
     $$(".news-card", newsTrack).forEach((card) => {
       const nId = card.dataset.id;
