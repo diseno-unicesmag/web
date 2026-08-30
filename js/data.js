@@ -1022,17 +1022,6 @@ const SECTORES_EGRESADOS = [
 
 const EGRESADOS_DESTACADOS = [
   {
-    nombre: "Jhonnathan Hormaza",
-    cohorte: "Egreso 2008 · 1ª Generación",
-    empresa: "Fundador de PIXIES STORE",
-    rol: "Diseñador de Producto & Art Toys",
-    descripcion:
-      "Pionero de la primera cohorte del programa. Creó su propia marca y empresa Pixies Store, con participación en certámenes locales, nacionales e internacionales en las líneas de art toys, ilustración y producción artesanal de autor.",
-    distincion:
-      "Reconocimiento institucional por liderazgo empresarial y diseño de autor",
-    avatar: "assets/img/egresados/jhonnathan-hormaza.jpg",
-  },
-  {
     nombre: "Tatiana López",
     cohorte: "Egresada Destacada",
     empresa: "Gastrodiversa 10 Años (2025)",
@@ -1040,18 +1029,7 @@ const EGRESADOS_DESTACADOS = [
     descripcion:
       "Reconocida por su aporte y dirección visual en el evento de impacto nacional Gastrodiversa 10 años, articulando identidad territorial, diseño gráfico y patrimonio cultural.",
     distincion: "Caso de éxito audiovisual y proyección comunitaria",
-    avatar: "assets/img/egresados/tatiana-lopez.jpg",
-  },
-  {
-    nombre: "Orlando Javier Ortiz Chaves",
-    cohorte: "Egreso 2010",
-    empresa: "Institución Universitaria EAM (Armenia)",
-    rol: "Docente Universitario & Diseñador Visual Digital",
-    descripcion:
-      "Especialista en Art Toys y modelado digital. Conferencista invitado en intercambio de saberes académicos entre universidades de la región andina y del eje cafetero.",
-    distincion:
-      "Lazos académicos interinstitucionales y docencia en educación superior",
-    avatar: "assets/img/egresados/orlando-ortiz.jpg",
+    avatar: "assets/img/egresados/tatiana-lopez.png",
   },
   {
     nombre: "Jonathan Alejandro Aguirre Terán",
@@ -1061,7 +1039,7 @@ const EGRESADOS_DESTACADOS = [
     descripcion:
       "Galardonado por sus significativos aportes al ámbito cultural de Nariño, impulsando procesos de diseño con impacto social y preservación de la memoria visual del territorio.",
     distincion: "Mención por méritos culturales y compromiso territorial",
-    avatar: "assets/img/egresados/jonathan-aguirre.jpg",
+    avatar: "assets/img/egresados/jonathan-aguirre.png",
   },
   {
     nombre: "Camilo Andrés Varona Guerrero",
@@ -1072,6 +1050,6 @@ const EGRESADOS_DESTACADOS = [
       "Líder en articulación comunitaria, seguimiento a graduados y formulación de proyectos académicos continuos como los Diplomados de Art Toys y Diseño UX/UI.",
     distincion:
       "Reconocimiento a la trayectoria profesional y docencia universitaria",
-    avatar: "assets/img/egresados/camilo-varona.jpg",
+    avatar: "assets/img/egresados/camilo-varona.png",
   },
 ];
