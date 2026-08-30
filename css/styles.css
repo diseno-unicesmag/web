@@ -2183,6 +2183,218 @@ a.cd-item:hover {
   max-width: 680px;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   CUERPO DOCENTE & PROFESORADO (`docentes.html`)
+   ═══════════════════════════════════════════════════════════════ */
+.docentes-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 18px 24px;
+}
+.doc-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 14px;
+}
+.doc-stat-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.doc-stat-item strong {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--amarillo);
+  line-height: 1;
+}
+.doc-stat-item span {
+  font-size: .8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.docentes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 26px;
+  margin-top: 32px;
+}
+
+.docente-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid #e7e2ed;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.06);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.docente-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--morado);
+  box-shadow: 0 16px 36px -8px var(--morado-glow);
+}
+
+.docente-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0ecf4;
+}
+
+.docente-card__avatar-wrap {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--morado-light);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #f4f0fa;
+}
+.docente-card__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.docente-card__fallback-avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--morado);
+  background: linear-gradient(135deg, rgba(109, 74, 196, 0.15) 0%, rgba(255, 196, 51, 0.2) 100%);
+}
+
+.docente-card__meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.docente-card__tag {
+  align-self: flex-start;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+.docente-card__name {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.docente-card__titulo {
+  font-size: .84rem;
+  color: var(--morado);
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+.docente-card__pregrado {
+  font-size: .78rem;
+  color: var(--ink-soft);
+}
+
+.docente-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.docente-card__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.docente-card__lbl {
+  font-size: .74rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.docente-card__detail p {
+  font-size: .86rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.docentes-callout {
+  background: linear-gradient(135deg, #2d174d 0%, #15092a 100%);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.35);
+}
+.docentes-callout__text {
+  flex: 1;
+  min-width: 280px;
+}
+.docentes-callout__text h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 6px 0 8px;
+}
+.docentes-callout__text p {
+  font-size: .92rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+  max-width: 680px;
+}
+
+/* Teaser de Docentes para el Home (`index.html`) */
+.docentes-teaser-box {
+  background: linear-gradient(135deg, rgba(109, 74, 196, 0.08) 0%, rgba(255, 196, 51, 0.08) 100%);
+  border: 1px solid #e5dfec;
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.docentes-teaser-box__content h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.docentes-teaser-box__content p {
+  font-size: .92rem;
+  color: var(--ink-soft);
+  max-width: 640px;
+  line-height: 1.5;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }

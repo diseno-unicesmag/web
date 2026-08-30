@@ -839,6 +839,74 @@
   }
 
   /* ═══════════════════════════════════════════════════════════════
+     CATÁLOGO DE DOCENTES (EN `docentes.html`)
+     ═══════════════════════════════════════════════════════════════ */
+  const docentesGrid = $("#docentesGrid");
+  const docentesFilters = $("#docentesFilters");
+
+  if (docentesGrid && Array.isArray(DOCENTES)) {
+    function renderDocentes(filterArea) {
+      const filtered = filterArea === "todos"
+        ? DOCENTES
+        : DOCENTES.filter((d) => d.area === filterArea);
+
+      docentesGrid.innerHTML = filtered.map((d) => {
+        const areaInfo = (typeof DOCENTES_AREAS !== "undefined" && DOCENTES_AREAS[d.area]) || { label: "Diseño Gráfico", color: "#ffc433" };
+        const initials = d.nombre.split(" ").map(w => w[0]).filter(c => /[A-ZÁÉÍÓÚÑ]/.test(c)).slice(0, 2).join("");
+        const avatarHtml = d.avatar
+          ? '<div class="docente-card__avatar-wrap"><img src="' + d.avatar + '" alt="' + d.nombre + '" class="docente-card__avatar" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="docente-card__fallback-avatar" style="display:none;">' + initials + '</div></div>'
+          : '<div class="docente-card__avatar-wrap"><div class="docente-card__fallback-avatar">' + initials + '</div></div>';
+
+        return (
+          '<article class="docente-card reveal" data-area="' + d.area + '">' +
+            '<div class="docente-card__header">' +
+              avatarHtml +
+              '<div class="docente-card__meta">' +
+                '<span class="docente-card__tag" style="background: ' + areaInfo.color + '22; color: ' + areaInfo.color + ';">' + areaInfo.label + '</span>' +
+                '<h3 class="docente-card__name">' + d.nombre + '</h3>' +
+                '<p class="docente-card__titulo"><strong>' + d.titulo + '</strong></p>' +
+                '<p class="docente-card__pregrado">' + d.pregrado + '</p>' +
+              '</div>' +
+            '</div>' +
+            '<div class="docente-card__body">' +
+              '<div class="docente-card__detail">' +
+                '<span class="docente-card__lbl">Cargo / Rol:</span>' +
+                '<p>' + d.cargo + '</p>' +
+              '</div>' +
+              '<div class="docente-card__detail">' +
+                '<span class="docente-card__lbl">Asignaturas de Taller:</span>' +
+                '<p>' + d.asignaturas + '</p>' +
+              '</div>' +
+              '<div class="docente-card__detail">' +
+                '<span class="docente-card__lbl">Línea de Creación / Investigación:</span>' +
+                '<p>' + d.investigacion + '</p>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }).join("");
+
+      $$(".reveal", docentesGrid).forEach((el) => io.observe(el));
+    }
+
+    renderDocentes("todos");
+
+    if (docentesFilters) {
+      $$(".filter", docentesFilters).forEach((btn) => {
+        btn.addEventListener("click", () => {
+          $$(".filter", docentesFilters).forEach((b) => {
+            b.classList.remove("is-active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("is-active");
+          btn.setAttribute("aria-selected", "true");
+          renderDocentes(btn.dataset.filter);
+        });
+      });
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
      PREGUNTAS FRECUENTES (EN `admisiones.html`)
      ═══════════════════════════════════════════════════════════════ */
   const faqList = $("#faqList");
