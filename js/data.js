@@ -170,7 +170,7 @@ const PROYECTOS = [
     estudiante: "Alejandro Enríquez Bastidas",
     semestre: "5º semestre",
     asignatura: "Diseño IV: Identidad Visual y Sistemas Marcarios",
-    docente: "D.G. Edison Armando Ramos Bastidas",
+    docente: "D.G. Edison Ramos",
     herramientas: "Adobe Illustrator · Photoshop · Figma · Manual de identidad",
     img: "assets/img/proyectos/proyecto-tierra-fuego.jpg",
     desc: "Ecosistema marcario integral para una cooperativa de alfareros tradicionales. Incluye logotipo modular, iconografía basada en vestigios arqueológicos Quillacingas, papelería institucional y señalización de taller.",
@@ -1063,17 +1063,17 @@ const EGRESADOS_DESTACADOS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   CUERPO DOCENTE (PROFESORADO OFICIAL)
+   CUERPO DOCENTE (PROFESORADO OFICIAL — 17 DOCENTES)
    ═══════════════════════════════════════════════════════════════ */
 const DOCENTES = [
   {
     id: "doc-01",
-    nombre: "Edison Armando Ramos Bastidas",
+    nombre: "Edison Ramos",
     tag: "Estrategia de Marca",
     destacado: "Profesional en Diseño · Estratega en Comunicación y Marca",
     color: "#ff7054",
     perfil:
-      "Estratega en comunicación y planeador de marca enfocado en el desarrollo de proyectos y competitividad en la región de Nariño, Colombia.",
+      "Profesional en diseño, estratega en comunicación y planeador de marca enfocado en la región de Nariño, Colombia.",
     avatar: "assets/img/profesores/edison-ramos.png",
   },
   {
@@ -1083,7 +1083,7 @@ const DOCENTES = [
     destacado: "Magíster en Humanidades Digitales · Diseñadora Industrial",
     color: "#ffc433",
     perfil:
-      "Especialista en Gestión Estratégica del Diseño y Especialista en Lógica y Técnica de la Forma con enfoque en investigación proyectual.",
+      "Diseñadora Industrial | Magíster en Humanidades Digitales | Especialista en Gestión Estratégica del Diseño | Especialista en Lógica y Técnica de la Forma.",
     avatar: "assets/img/profesores/karol-ibarra.png",
   },
   {
@@ -1093,7 +1093,7 @@ const DOCENTES = [
     destacado: "Magíster en Diseño Urbano y Arquitectónico Sustentable (Gestalt, México)",
     color: "#6d4ac4",
     perfil:
-      "Diseñadora Industrial de la Universidad de Nariño y Especialista en Diseño de Mobiliario (UBA, Argentina). Docente universitaria con más de seis años de experiencia en las áreas del Diseño Gráfico e Industrial.",
+      "Diseñadora industrial de la Universidad de Nariño, graduada de la Maestría en Diseño Urbano y Arquitectónico Sustentable de la Universidad Gestalt de Diseño, México, y especialista en Diseño de Mobiliario de la Universidad de Buenos Aires, Argentina. Docente universitaria con más de seis años de experiencia en las áreas del Diseño Gráfico e Industrial.",
     avatar: "assets/img/profesores/karen-ocana.png",
   },
   {
@@ -1103,7 +1103,7 @@ const DOCENTES = [
     destacado: "Doctor en Tecnologías de la Información y la Comunicación (Tech)",
     color: "#ffc433",
     perfil:
-      "Máster universitario en Tecnología Educativa y Competencias Digitales (UNIR). Diseñador Gráfico y Multimedial (Udenar), Ingeniero de Sistemas (INDESCO - UCC) y Licenciado en Informática (Udenar).",
+      "Doctorado Universidad Tecnológica Tech: Doctorado en Tecnologías de la Información y la comunicación, Maestría Universidad Internacional de La Rioja: Máster universitario en tecnología educativa y competencias digitales, Pregrado Universidad de Nariño: Diseño Gráfico y Multimedial, Pregrado INDESCO - Universidad Cooperativa de Colombia: Ingeniería de Sistemas, Pregrado Universidad de Nariño: Licenciatura en Informática.",
     avatar: "assets/img/profesores/mauricio-montenegro.png",
   },
   {
@@ -1113,7 +1113,7 @@ const DOCENTES = [
     destacado: "Magíster en Desarrollo de Proyectos en Innovación y Producto (UNINI)",
     color: "#ff7054",
     perfil:
-      "Diseñadora Industrial de la Universidad de Nariño, Especialista en Gerencia de Diseño (UTADEO) y Candidata a Magíster en Diseño para la Innovación Social.",
+      "Diseñadora Industrial de la Universidad de Nariño, Especialización en Gerencia de Diseño de la Universidad Jorge Tadeo Lozano, Magister en Desarrollo de Proyectos en Innovación y Producto de la Universidad Internacional Iberoamericana de Puerto Rico y Candidata a Magister en Diseño para la Innovación Social.",
     avatar: "assets/img/profesores/karol-suarez.png",
   },
   {
@@ -1123,7 +1123,7 @@ const DOCENTES = [
     destacado: "Especialista en Docencia Universitaria & Especialista en Gerencia en Diseño",
     color: "#ff7054",
     perfil:
-      "Diseñador Industrial, Docente de Diseño y Candidato a Magíster en Diseño para la Innovación Social.",
+      "Diseñador Industrial, Docente Diseño, Especialista en Docencia Universitaria, Especialista en Gerencia en Diseño y Candidato a Magister en Diseño para la Innovación Social.",
     avatar: "assets/img/profesores/mauricio-feuillet.png",
   },
   {
@@ -1133,7 +1133,7 @@ const DOCENTES = [
     destacado: "Magíster en Diseño y Creación Interactiva (U. de Caldas)",
     color: "#ffc433",
     perfil:
-      "Ingeniero de Sistemas, Diseñador Gráfico y Posgrado en Artes Mediales (Universidad de Córdoba Arg – Universidad de Chile – Universidad de Caldas).",
+      "Ingeniero de Sistemas, Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg) – Universidad de Chile – Universidad de Caldas y Magister en Diseño y Creación Interactiva de la Universidad de Caldas.",
     avatar: "assets/img/profesores/arturo-de-la-cruz.png",
   },
   {
@@ -1143,7 +1143,7 @@ const DOCENTES = [
     destacado: "Magíster en Comunicación e Identidad Corporativa (UNIR)",
     color: "#ff7054",
     perfil:
-      "Diseñador Gráfico especializado en consultoría, sistemas de identidad visual y comunicación estratégica de marca.",
+      "Diseñador Gráfico, Magister en comunicación e identidad corporativa de la Universidad Internacional de la Rioja.",
     avatar: "assets/img/profesores/mateo-teran.png",
   },
   {
@@ -1153,7 +1153,7 @@ const DOCENTES = [
     destacado: "Magíster en Diseño y Creación Interactiva (U. de Caldas)",
     color: "#ffc433",
     perfil:
-      "Diseñador Gráfico, Posgrado en Artes Mediales (U. de Córdoba Arg – U. de Chile – U. de Caldas) y Miembro del Consejo Directivo de la Red Académica de Diseño (RAD periodo 2016-2018).",
+      "Diseñador Gráfico, Posgrado en Artes Mediales de la Universidad de Córdoba (Arg)- Universidad de Chile – Universidad de Caldas y Magister en Diseño y Creación Interactiva de la Universidad de Caldas. Miembro del Consejo Directivo de la Red Colombiana Académica de Diseño RAD periodo 2016-2018.",
     avatar: "assets/img/profesores/ramon-ortega.png",
   },
   {
@@ -1163,7 +1163,7 @@ const DOCENTES = [
     destacado: "Magíster en Diseño y Creación Interactiva (U. de Caldas)",
     color: "#ffc433",
     perfil:
-      "Tecnólogo en Producción de Radio y Televisión (CST), Diseñador Gráfico (UTADEO) y Especialista en Gerencia del Diseño (UTADEO).",
+      "Tecnólogo en Producción de Radio y Televisión del Colegio Superior de Telecomunicaciones, Diseñador Gráfico de la Universidad Jorge Tadeo Lozano, Especialista en Gerencia del Diseño de la Universidad Jorge Tadeo Lozano y Magister en diseño y creación interactiva de la Universidad de Caldas.",
     avatar: "assets/img/profesores/fernando-coral.png",
   },
   {
@@ -1173,7 +1173,7 @@ const DOCENTES = [
     destacado: "Magíster en Etnoliteratura · Especialista en Estudios Latinoamericanos",
     color: "#6d4ac4",
     perfil:
-      "Docente Investigadora, Profesional en Filosofía, Diplomada en Identidad Gorettiana y Diplomada en Pensamiento de Diseño.",
+      "Docente Investigadora, Magister en Etnoliteratura, Especialización de Estudios latinoamericanos, Pregrado en filosofia, Cursos de corta duración Universidad, Investigación diplomado en Identidad Gorettiana, diplomado en Pensamiento de Diseño.",
     avatar: "assets/img/profesores/amanda-arteaga.png",
   },
   {
@@ -1183,7 +1183,7 @@ const DOCENTES = [
     destacado: "Diseñador Gráfico, Investigador Visual y Fotógrafo Premiado",
     color: "#5bc0f5",
     perfil:
-      "Experiencia en Diseño Editorial, Publicitario, Branding, Museografía, Fotografía de Paisaje y Cortometrajes. Reconocido internacionalmente en los Sony World Photography Awards y 35Awards.",
+      "Diseñador Gráfico, Investigador y Fotógrafo colombiano. Mi experiencia abarca el Diseño Editorial, Publicitario, Branding y Museografía, así como la Fotografía de Paisaje, Naturaleza y Arquitectura. Además, me he aventurado en la producción audiovisual hasta la creación de cortometrajes, Mi carrera se ha caracterizado por un compromiso constante con la constancia y la innovación mediante la fotografía, llevándome a espacios de reconocimiento internacional como los Sony World Photography Awards o los 35Awards.",
     avatar: "assets/img/profesores/carlos-jimenez.png",
   },
   {
@@ -1193,7 +1193,7 @@ const DOCENTES = [
     destacado: "Candidato a Magíster en Diseño Fotográfico (U. Iberoamericana, México)",
     color: "#5bc0f5",
     perfil:
-      "Diseñador de Comunicación Visual (Javeriana Cali). Profesor de tiempo completo en la Universidad de Celaya y profesor en la Univ. Latina de México. Proyectos documentales sobre memoria y evolución cultural.",
+      "Fotógrafo colombiano, residente en México, Diseñador de Comunicación Visual de la Universidad Javeriana de Cali Colombia y candidato a Magister en Diseño Fotográfico por la Univesidad Iberoamericana de México. Actualmente se desempeña como profesor tiempo completo de la Universidad de Celaya y profesor por horas en la Universidad Latina de México (Celaya). Su trabajo de perfil documental se centra en desarrollar proyectos de fondo cultural donde exalta el valor del ser humano como eje fundamental de la memoria, conservación y evolución cultural.",
     avatar: "assets/img/profesores/juan-pinzon.png",
   },
   {
@@ -1203,7 +1203,37 @@ const DOCENTES = [
     destacado: "Maestro Artesano Contemporáneo · Fundador de Taller Makaco",
     color: "#6d4ac4",
     perfil:
-      "Diseñador Gráfico (Universidad CESMAG). En 2012 fundó Taller Makaco, fusionando técnica, narrativa andina y memoria oral en art toys de reconocimiento nacional e internacional.",
+      "Diseñador gráfico de la Universidad CESMAG, encontró en la ilustración y la cuentería una forma de dar vida a la tradición oral que marcó su infancia. En 2012 fundó su taller Makaco, dedicado a la creación artesanal de art toys, donde fusiona técnica, narrativa y memoria. Su obra, reconocida dentro y fuera del país, transforma el juego en arte y la artesanía en un lenguaje contemporáneo. Como maestro artesano contemporáneo, su trabajo celebra la imaginación y rescata las historias del territorio, recordando que cada pieza es un pequeño universo hecho a mano.",
     avatar: "assets/img/profesores/camilo-varona.png",
+  },
+  {
+    id: "doc-15",
+    nombre: "Wilmer Zambrano",
+    tag: "Animación 3D & Concept Art",
+    destacado: "CEO Lab of Shadows · Diseñador Gráfico · Animador 3D Certificado Autodesk Maya",
+    color: "#ffc433",
+    perfil:
+      "CEO Lab of Shadows. Diseñador gráfico – Animador 3D – Autodesk Maya certificado profesional. Mi estilo va enmarcado por la forma de visualizar el mundo y la ciencia ficción, es todo sobre la mezcla de pensamiento espiritual con el hombre, de la máquina y la estética del cuerpo. Habilidades: Compositing, Concept Art, Concept Design, Rendering, Storyboarding, 3D Animation, 3D Modeling, Digital Sculpting, Lighting, Texturing, Character Animation.",
+    avatar: "assets/img/profesores/wilmer-zambrano.png",
+  },
+  {
+    id: "doc-16",
+    nombre: "Leonardo Hidalgo",
+    tag: "Sistemas de Impresión & Caligrafía",
+    destacado: "Diseñador Gráfico (Udenar) · Magíster · Cofundador de Milhojas Cuadernos",
+    color: "#5bc0f5",
+    perfil:
+      "Diseñador gráfico, docente y magíster vinculado al programa de Diseño Gráfico de la Universidad CESMAG (UNICESMAG) en Pasto, Colombia. Ha estado vinculado como docente e investigador en la Facultad de Artes de la Universidad de Nariño (Udenar) dentro del Departamento de Diseño. Ha dictado espacios académicos enfocados en Sistemas de Impresión. En el plano independiente, se destaca en la escena del diseño local por su trabajo en caligrafía y por ser cofundador de Milhojas cuadernos, proyecto dedicado a la encuadernación y papelería artesanal.",
+    avatar: "assets/img/profesores/leonardo-hidalgo.png",
+  },
+  {
+    id: "doc-17",
+    nombre: "Natalia Timarán",
+    tag: "Diseño Social & Plan de Negocios",
+    destacado: "Docente Investigadora · Grupo Cooper · Reconocimiento UNICESMAG",
+    color: "#6d4ac4",
+    perfil:
+      "Docente, investigadora y diseñadora gráfica vinculada al programa de Diseño Gráfico de la Universidad CESMAG (UNICESMAG) en Pasto, Nariño. Dicta asignaturas en los semestres superiores del programa de Diseño Gráfico, tales como Proyecto Empresarial II (Plan de Negocios). Integra grupos de investigación institucionales (como el grupo Cooper), donde desarrolla proyectos enfocados en la cultura regional y el desarrollo social. Ha sido galardonada en la Noche de Reconocimientos UNICESMAG debido a su valiosa contribución a la creación artística y destacada participación cultural.",
+    avatar: "assets/img/profesores/natalia-timaran.png",
   },
 ];
